@@ -1,0 +1,208 @@
+Running the Phase-1 + Phase-2 test suite:
+pytest /home/user/railway_headway_sim/tests -p no:cacheprovider --tb=short -v
+============================= test session starts ==============================
+platform linux -- Python 3.13.14, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /home/user
+plugins: anyio-4.14.2
+collecting ... collected 101 items
+
+railway_headway_sim/tests/test_controller.py::test_p1_009_modify_after_validation_is_detected PASSED [  0%]
+railway_headway_sim/tests/test_controller.py::test_no_op_edit_does_not_invalidate_the_validation PASSED [  1%]
+railway_headway_sim/tests/test_controller.py::test_import_marks_project_as_validated_for_imported_content PASSED [  2%]
+railway_headway_sim/tests/test_controller.py::test_invalid_edit_is_rejected_with_a_message PASSED [  3%]
+railway_headway_sim/tests/test_controller.py::test_unknown_field_edit_is_rejected PASSED [  4%]
+railway_headway_sim/tests/test_controller.py::test_p1_010_direction_change_does_not_mutate_project_data PASSED [  5%]
+railway_headway_sim/tests/test_controller.py::test_direction_selection_rejects_reserved_values PASSED [  6%]
+railway_headway_sim/tests/test_controller.py::test_direction_state_guard_rejects_other_values PASSED [  7%]
+railway_headway_sim/tests/test_controller.py::test_new_project_provides_template_defaults PASSED [  8%]
+railway_headway_sim/tests/test_controller.py::test_import_failure_preserves_the_current_project PASSED [  9%]
+railway_headway_sim/tests/test_controller.py::test_import_of_invalid_but_usable_document_preserves_content PASSED [ 10%]
+railway_headway_sim/tests/test_controller.py::test_no_file_selected_import_reports_precondition_error PASSED [ 11%]
+railway_headway_sim/tests/test_controller.py::test_export_without_project_is_rejected_cleanly PASSED [ 12%]
+railway_headway_sim/tests/test_controller.py::test_validate_without_project_is_reported_as_error PASSED [ 13%]
+railway_headway_sim/tests/test_controller.py::test_subscribers_are_notified_and_can_unsubscribe PASSED [ 14%]
+railway_headway_sim/tests/test_controller.py::test_export_uses_controller_directory_and_reports_outcome PASSED [ 15%]
+railway_headway_sim/tests/test_controller.py::test_summary_and_state_rows_are_available_for_the_ui PASSED [ 16%]
+railway_headway_sim/tests/test_phase2_facade_and_app.py::test_p2_025_validation_facade_scope_and_single_result_model PASSED [ 17%]
+railway_headway_sim/tests/test_phase2_facade_and_app.py::test_p2_026_controller_draft_mechanism_blocks_export PASSED [ 18%]
+railway_headway_sim/tests/test_phase2_facade_and_app.py::test_p2_027_ui_pages_are_functional_and_read_only PASSED [ 19%]
+railway_headway_sim/tests/test_phase2_facade_and_app.py::test_p2_028_no_out_of_scope_capability_or_result PASSED [ 20%]
+railway_headway_sim/tests/test_phase2_grr_regressions.py::test_p2_reg_g001_grr01_loads_with_the_frozen_inventory PASSED [ 21%]
+railway_headway_sim/tests/test_phase2_grr_regressions.py::test_p2_reg_g002_regional_inventory PASSED [ 22%]
+railway_headway_sim/tests/test_phase2_grr_regressions.py::test_p2_reg_g003_global_registry_uniqueness_and_draft_guard PASSED [ 23%]
+railway_headway_sim/tests/test_phase2_grr_regressions.py::test_p2_reg_g004_section_ba_contradiction_scan_is_clean PASSED [ 24%]
+railway_headway_sim/tests/test_phase2_grr_regressions.py::test_p2_reg_g005_grr01_load_stability_and_evidence_files PASSED [ 25%]
+railway_headway_sim/tests/test_phase2_models.py::test_p2_001_all_typed_catalogues_parse_with_unit_suffixed_fields PASSED [ 26%]
+railway_headway_sim/tests/test_phase2_models.py::test_p2_002_display_units_are_a_preference_only PASSED [ 27%]
+railway_headway_sim/tests/test_phase2_models.py::test_p2_003_alignment_requires_end_greater_than_start PASSED [ 28%]
+railway_headway_sim/tests/test_phase2_models.py::test_p2_004_reference_system_alignment_id_must_resolve PASSED [ 29%]
+railway_headway_sim/tests/test_phase2_models.py::test_p2_005_horizontal_geometry_curve_and_range_rules PASSED [ 30%]
+railway_headway_sim/tests/test_phase2_models.py::test_p2_006_geometry_overlap_and_coverage_rules PASSED [ 31%]
+railway_headway_sim/tests/test_phase2_models.py::test_p2_007_vertical_profile_rules PASSED [ 32%]
+railway_headway_sim/tests/test_phase2_models.py::test_phase2_models_out_of_scope_guards PASSED [ 33%]
+railway_headway_sim/tests/test_phase2_static_geometry.py::test_p2_021_orientation_rules_and_fit_flags PASSED [ 34%]
+railway_headway_sim/tests/test_phase2_static_geometry.py::test_p2_022_frozen_static_benchmarks PASSED [ 35%]
+railway_headway_sim/tests/test_phase2_static_geometry.py::test_p2_023_footprint_chainage_mapping_and_notes PASSED [ 36%]
+railway_headway_sim/tests/test_phase2_static_geometry.py::test_p2_024_marker_direction_maps_to_traversal_and_baseline_table PASSED [ 37%]
+railway_headway_sim/tests/test_phase2_static_geometry.py::test_phase2_static_geometry_has_no_dynamics PASSED [ 38%]
+railway_headway_sim/tests/test_phase2_stations.py::test_p2_017_station_rules PASSED [ 39%]
+railway_headway_sim/tests/test_phase2_stations.py::test_p2_018_platform_rules PASSED [ 40%]
+railway_headway_sim/tests/test_phase2_stations.py::test_p2_019_stopping_mark_rules PASSED [ 41%]
+railway_headway_sim/tests/test_phase2_stations.py::test_p2_020_observation_point_rules PASSED [ 42%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_008_speed_restriction_rules PASSED [ 43%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_009_node_rules PASSED [ 44%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_010_track_rules PASSED [ 45%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_011_parallel_chainage_and_projection_mismatch_are_legal PASSED [ 46%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_012_legacy_chainages_reconciled_with_chainage_map PASSED [ 47%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_013_topology_adjacency_and_connectivity PASSED [ 48%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_014_edge_sequence_continuity_check PASSED [ 49%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_015_opaque_records_in_a_physical_project PASSED [ 50%]
+railway_headway_sim/tests/test_phase2_topology.py::test_p2_016_unknown_extension_fields_are_preserved_everywhere PASSED [ 51%]
+railway_headway_sim/tests/test_project_io.py::test_p1_002_export_import_roundtrip_preserves_data[template] PASSED [ 52%]
+railway_headway_sim/tests/test_project_io.py::test_p1_002_export_import_roundtrip_preserves_data[example] PASSED [ 53%]
+railway_headway_sim/tests/test_project_io.py::test_roundtrip_through_files_and_helpers PASSED [ 54%]
+railway_headway_sim/tests/test_project_io.py::test_p1_003_equivalent_project_produces_same_canonical_hash_after_roundtrip PASSED [ 55%]
+railway_headway_sim/tests/test_project_io.py::test_export_metadata_is_opt_in_and_does_not_break_roundtrip PASSED [ 56%]
+railway_headway_sim/tests/test_project_io.py::test_hash_is_order_independent_and_normalises_numbers PASSED [ 57%]
+railway_headway_sim/tests/test_project_io.py::test_export_preserves_stored_numeric_values_and_types PASSED [ 58%]
+railway_headway_sim/tests/test_project_io.py::test_export_document_shape_uses_canonical_section_order PASSED [ 59%]
+railway_headway_sim/tests/test_project_io.py::test_export_filename_reflects_project_name_and_id PASSED [ 60%]
+railway_headway_sim/tests/test_project_io.py::test_p1_011_imported_json_content_is_never_executed PASSED [ 61%]
+railway_headway_sim/tests/test_project_io.py::test_import_helpers_do_not_use_unsafe_deserialization PASSED [ 62%]
+railway_headway_sim/tests/test_project_io.py::test_upload_payload_shapes_are_supported PASSED [ 63%]
+railway_headway_sim/tests/test_project_io.py::test_empty_upload_is_reported_as_application_error PASSED [ 64%]
+railway_headway_sim/tests/test_ui_shell.py::test_shell_builds_all_navigation_pages PASSED [ 65%]
+railway_headway_sim/tests/test_ui_shell.py::test_header_shows_versions_and_status_text PASSED [ 66%]
+railway_headway_sim/tests/test_ui_shell.py::test_direction_buttons_drive_the_controller_and_labels PASSED [ 67%]
+railway_headway_sim/tests/test_ui_shell.py::test_project_page_edits_are_written_through_the_controller PASSED [ 68%]
+railway_headway_sim/tests/test_ui_shell.py::test_project_page_reimport_updates_every_widget PASSED [ 69%]
+railway_headway_sim/tests/test_ui_shell.py::test_audit_page_renders_and_filters_diagnostics PASSED [ 70%]
+railway_headway_sim/tests/test_ui_shell.py::test_placeholder_pages_do_not_implement_engineering_calculations PASSED [ 71%]
+railway_headway_sim/tests/test_ui_shell.py::test_launch_app_builds_and_can_write_a_static_snapshot PASSED [ 72%]
+railway_headway_sim/tests/test_ui_shell.py::test_controller_listeners_refresh_the_shell_without_manual_calls PASSED [ 73%]
+railway_headway_sim/tests/test_validation.py::test_p1_001_new_project_is_valid PASSED [ 74%]
+railway_headway_sim/tests/test_validation.py::test_documented_example_project_is_valid PASSED [ 75%]
+railway_headway_sim/tests/test_validation.py::test_p1_004_missing_schema_version_is_invalid PASSED [ 76%]
+railway_headway_sim/tests/test_validation.py::test_p1_005_unsupported_schema_version_is_invalid PASSED [ 77%]
+railway_headway_sim/tests/test_validation.py::test_schema_version_of_wrong_type_is_invalid PASSED [ 78%]
+railway_headway_sim/tests/test_validation.py::test_p1_006_project_identity_is_required[empty-id] PASSED [ 79%]
+railway_headway_sim/tests/test_validation.py::test_p1_006_project_identity_is_required[blank-id] PASSED [ 80%]
+railway_headway_sim/tests/test_validation.py::test_p1_006_project_identity_is_required[missing-id] PASSED [ 81%]
+railway_headway_sim/tests/test_validation.py::test_p1_006_project_identity_is_required[missing-name] PASSED [ 82%]
+railway_headway_sim/tests/test_validation.py::test_p1_007_chainage_end_not_greater_than_start_is_invalid[100.0-0.0-reversed] PASSED [ 83%]
+railway_headway_sim/tests/test_validation.py::test_p1_007_chainage_end_not_greater_than_start_is_invalid[10.0-5.0-reversed] PASSED [ 84%]
+railway_headway_sim/tests/test_validation.py::test_p1_007_chainage_end_not_greater_than_start_is_invalid[0.0-0.0-equal] PASSED [ 85%]
+railway_headway_sim/tests/test_validation.py::test_chainage_bounds_are_accepted_when_increasing PASSED [ 86%]
+railway_headway_sim/tests/test_validation.py::test_p1_008_invalid_direction_enumeration_is_invalid PASSED [ 87%]
+railway_headway_sim/tests/test_validation.py::test_missing_direction_is_invalid PASSED [ 88%]
+railway_headway_sim/tests/test_validation.py::test_identical_forward_and_reverse_direction_warns PASSED [ 89%]
+railway_headway_sim/tests/test_validation.py::test_p1_012_diagnostics_have_stable_structure PASSED [ 90%]
+railway_headway_sim/tests/test_validation.py::test_malformed_field_type_is_reported_once_and_not_repaired_silently PASSED [ 91%]
+railway_headway_sim/tests/test_validation.py::test_missing_container_is_created_with_default_and_info PASSED [ 92%]
+railway_headway_sim/tests/test_validation.py::test_malformed_container_is_reported_and_defaulted PASSED [ 93%]
+railway_headway_sim/tests/test_validation.py::test_duplicate_identifiers_are_reported_per_object_type PASSED [ 94%]
+railway_headway_sim/tests/test_validation.py::test_non_object_root_is_reported PASSED [ 95%]
+railway_headway_sim/tests/test_validation.py::test_unparseable_json_text_is_reported PASSED [ 96%]
+railway_headway_sim/tests/test_validation.py::test_undecodable_upload_bytes_are_reported PASSED [ 97%]
+railway_headway_sim/tests/test_validation.py::test_display_unit_warning_is_not_an_error PASSED [ 98%]
+railway_headway_sim/tests/test_validation.py::test_preserved_containers_get_info_only PASSED [ 99%]
+railway_headway_sim/tests/test_validation.py::test_extra_unknown_fields_are_preserved PASSED [100%]
+
+
+==============================================================================
+PHASE-1 ACCEPTANCE TESTS (TEST P1-001 ... TEST P1-012)
+==============================================================================
+  PASS     P1-001  A new project template validates as VALID with no diagnostics.
+  PASS     P1-002  Export -> import yields equivalent project data.
+  PASS     P1-002  Export -> import yields equivalent project data.
+  PASS     P1-003  Roundtrip and re-export keep the canonical project hash.
+  PASS     P1-004  A document without schema_version is INVALID with a schema diagnostic.
+  PASS     P1-005  An unsupported schema_version is INVALID and is not parsed.
+  PASS     P1-006  Missing/empty project ID (or name) is an ERROR (INVALID).
+  PASS     P1-006  Missing/empty project ID (or name) is an ERROR (INVALID).
+  PASS     P1-006  Missing/empty project ID (or name) is an ERROR (INVALID).
+  PASS     P1-006  Missing/empty project ID (or name) is an ERROR (INVALID).
+  PASS     P1-007  chainage_end <= chainage_start is INVALID (VAL-REF-001).
+  PASS     P1-007  chainage_end <= chainage_start is INVALID (VAL-REF-001).
+  PASS     P1-007  chainage_end <= chainage_start is INVALID (VAL-REF-001).
+  PASS     P1-008  An unsupported chainage direction value is INVALID (VAL-DIR-001).
+  PASS     P1-009  Editing after validation marks the project as modified.
+  PASS     P1-010  Switching FORWARD/REVERSE leaves all stored data unchanged.
+  PASS     P1-011  Hostile JSON payloads are treated as inert data.
+  PASS     P1-012  Every diagnostic exposes code/severity/message and is deterministic.
+------------------------------------------------------------------------------
+  Phase-1 Acceptance Tests: 18/18 passed
+==============================================================================
+
+==============================================================================
+PHASE-2 TESTS (TEST P2-001 ... TEST P2-028)
+==============================================================================
+  PASS     P2-001  every typed catalogue parses into strict unit-suffixed models.
+  PASS     P2-002  display_units never changes stored values (unit suffixes rule).
+  PASS     P2-003  alignment end > start is enforced; a reversed alignment is INVALID.
+  PASS     P2-004  reference_system.alignment_id must resolve to an alignment.
+  PASS     P2-005  curves need radius_m > 0 plus handedness and must stay in the alignment.
+  PASS     P2-006  overlapping sections and coverage gaps are both ERRORs.
+  PASS     P2-007  ELEVATION_POINTS: >= 2 points, strictly increasing unique chainage, in-range.
+  PASS     P2-008  speed > 0, range inside the alignment, valid direction and type.
+  PASS     P2-009  node chainage inside the alignment; optional station_id must resolve.
+  PASS     P2-010  endpoints exist and differ, length_m > 0, group resolves, map in-range.
+  PASS     P2-011  parallel/overlapping chainage is not a conflict; length != projection is legal.
+  PASS     P2-012  legacy chainages[] must match Track.chainage_map within 1e-9 km.
+  PASS     P2-013  adjacency/connectivity use node identity only (never chainage equality).
+  PASS     P2-014  edge sequences are checked for continuity by node identity.
+  PASS     P2-015  an opaque record with an 'id' is an ERROR (VAL-PHASE-002) plus a WARNING.
+  PASS     P2-016  unknown extension fields survive import -> export at every level.
+  PASS     P2-017  platform ids resolve and belong to the station; no duplicates.
+  PASS     P2-018  usable range inside the track, length reconciliation, references.
+  PASS     P2-019  mark track, position bounds, usable range, direction; chainage derived.
+  PASS     P2-020  SERVICE_EVENT / CROSS_SECTION / TRACK_CROSS_SECTION members.
+  PASS     P2-021  WITH_EDGE: rear = front - L; AGAINST_EDGE: rear = front + L.
+  PASS     P2-022  the five frozen static benchmarks reproduce exactly.
+  PASS     P2-023  front/rear chainages are mapped; unmappable positions are reported.
+  PASS     P2-024  FORWARD -> WITH_EDGE, REVERSE -> AGAINST_EDGE; baseline table holds.
+  PASS     P2-025  physical projects get Phase-2 scope; legacy projects keep Phase-1 behaviour.
+  PASS     P2-026  an invalid uncommitted draft is rejected (APP-EDIT-002) and blocks export.
+  PASS     P2-027  Infrastructure + Stations pages render typed data and never edit it.
+  PASS     P2-028  Section D: no train dynamics, signalling, headway or capacity anywhere.
+------------------------------------------------------------------------------
+  Phase-2 Tests: 28/28 passed
+==============================================================================
+
+==============================================================================
+GRR-01 REGISTRY REGRESSIONS (TEST P2-REG-G001 ... TEST P2-REG-G005)
+==============================================================================
+  PASS     P2-REG-G001  GRR-01 loads with exactly the frozen object counts and no errors.
+  PASS     P2-REG-G002  regional node/edge counts (6/18/8/12/6 and 8/4/23/8/12/4).
+  PASS     P2-REG-G003  globally unique registered IDs; a broken draft cannot be exported.
+  PASS     P2-REG-G004  the Section BA contradiction scan reports no contradiction.
+  PASS     P2-REG-G005  loading/export is stable; timestamps, hash and amendments hold.
+------------------------------------------------------------------------------
+  Grr-01 Registry Regressions: 5/5 passed
+==============================================================================
+============================= 101 passed in 2.08s ==============================
+
+Test suite result: PASS - all tests passed
+
+==============================================================================
+PHASE-2R ADDENDUM - CANONICAL COUNT LINES (F1, F3)
+==============================================================================
+Captured for: the delivered tree (Phase 2 + Phase 2R).
+The run log above is the unedited output of `python3 -m railway_headway_sim.tests.run_tests`.
+
+Replace any test-total string with the canonical decomposition from
+docs/TEST_INVENTORY.md (generated by build_test_inventory.py):
+
+  test totals : 66 + 30 + 5 = 101 collected items
+                (66 Phase-1 items + 30 Phase-2 items + 5 GRR-01 registry regressions)
+                acceptance tables: 18/18 Phase-1 rows + 28/28 Phase-2 rows + 5/5 GRR-01 rows
+
+Replace any GRR-01 inventory count string with the canonical line from
+docs/GRR-01 INVENTORY.md:
+
+  inventory   : 1/2/7/1/13/8/50/59/4/9/14/9 = 177 registered engineering objects
+  catalogues  : 12 typed (11 layer catalogue keys + vertical profile points), 6 opaque Phase-1
+
+Note: the string 1/2/7/13/8/50/59/4/9/14/9 (vertical profile omitted) sums to 176 and is
+wrong; it must not be used. Every count string must sum to its stated total.
+==============================================================================

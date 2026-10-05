@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "PRJ-DEMO-0001",
+    "name": "Demo Intercity Line",
+    "project_type": "TRAIN_RUN_ANALYSIS",
+    "data_status": "ENGINEERING",
+    "description": "Phase-1 example project: canonical container structure, metadata and setup data only. Contains no simulation, headway or capacity results.",
+    "engineering_status": "PLANNING",
+    "created_utc": "2026-01-15T08:30:00Z",
+    "modified_utc": "2026-01-15T08:30:00Z"
+  },
+  "display_units": {
+    "chainage": "km",
+    "track_distance": "km",
+    "elevation": "m",
+    "speed": "km/h",
+    "mass": "t",
+    "force": "kN",
+    "power": "kW",
+    "time": "s",
+    "acceleration": "m/s^2",
+    "gradient": "%",
+    "curve_radius": "m"
+  },
+  "reference_system": {
+    "alignment_id": "ALN-DEMO-0001",
+    "chainage_start_km": 0,
+    "chainage_end_km": 250.4,
+    "chainage_origin_name": "Alpha",
+    "chainage_end_name": "Delta",
+    "projection": "X_Y",
+    "coordinate_system": "LOCAL",
+    "datum": "LOCAL",
+    "forward_direction": "INCREASING_CHAINAGE",
+    "reverse_direction": "DECREASING_CHAINAGE",
+    "curve_radius_convention": "SIGNED_LEFT_POSITIVE"
+  },
+  "provenance": {
+    "created_by": "Example data",
+    "tool_name": "railway_headway_sim",
+    "tool_version": "0.1.0",
+    "source": "hand-authored example project",
+    "notes": "Chainage and object data are illustrative setup values for Phase-1 container testing."
+  },
+  "infrastructure": [
+    {
+      "id": "INF-0001",
+      "name": "Main line - infrastructure layer",
+      "kind": "TRACK_LAYER",
+      "comment": "Container objects only; no geometry calculation is performed in Phase 1.",
+      "chainages": [
+        {
+          "id": "CHN-0001",
+          "station_id": "STN-0001",
+          "chainage_km": 0,
+          "origin_chainage_km": 0,
+          "direction": "INCREASING_CHAINAGE",
+          "label": "Alpha origin"
+        },
+        {
+          "id": "CHN-0002",
+          "station_id": "STN-0002",
+          "chainage_km": 120.5,
+          "origin_chainage_km": 0,
+          "direction": "INCREASING_CHAINAGE",
+          "label": "Bravo junction"
+        },
+        {
+          "id": "CHN-0003",
+          "station_id": "STN-0003",
+          "chainage_km": 250.4,
+          "origin_chainage_km": 0,
+          "direction": "INCREASING_CHAINAGE",
+          "label": "Delta terminus"
+        }
+      ],
+      "stations": [
+        {
+          "id": "STN-0001",
+          "code": "ALP",
+          "name": "Alpha Central",
+          "kind": "INTERCITY",
+          "chainage_km": 0,
+          "platforms": [
+            {
+              "id": "STN-0001-P1",
+              "name": "Platform 1",
+              "track_id": "TRK-0001",
+              "length_m": 320
+            },
+            {
+              "id": "STN-0001-P2",
+              "name": "Platform 2",
+              "track_id": "TRK-0002",
+              "length_m": 320
+            }
+          ]
+        },
+        {
+          "id": "STN-0002",
+          "code": "BRV",
+          "name": "Bravo Junction",
+          "kind": "JUNCTION",
+          "chainage_km": 120.5,
+          "platforms": [
+            {
+              "id": "STN-0002-P1",
+              "name": "Platform 1",
+              "track_id": "TRK-0001",
+              "length_m": 250
+            }
+          ]
+        },
+        {
+          "id": "STN-0003",
+          "code": "DLT",
+          "name": "Delta Terminus",
+          "kind": "TERMINUS",
+          "chainage_km": 250.4,
+          "platforms": [
+            {
+              "id": "STN-0003-P1",
+              "name": "Platform 1",
+              "track_id": "TRK-0001",
+              "length_m": 300
+            }
+          ]
+        }
+      ],
+      "speed_profiles": [
+        {
+          "id": "SPD-0001",
+          "name": "Line speed segment 1",
+          "direction": "INCREASING_CHAINAGE",
+          "segments": [
+            {
+              "from_chainage_km": 0,
+              "to_chainage_km": 120.5,
+              "speed_kmh": 160
+            },
+            {
+              "from_chainage_km": 120.5,
+              "to_chainage_km": 250.4,
+              "speed_kmh": 140
+            }
+          ]
+        }
+      ],
+      "gradients": [
+        {
+          "id": "GRD-0001",
+          "from_chainage_km": 0,
+          "to_chainage_km": 60.2,
+          "gradient_permille": 5
+        },
+        {
+          "id": "GRD-0002",
+          "from_chainage_km": 60.2,
+          "to_chainage_km": 250.4,
+          "gradient_permille": -3.5
+        }
+      ],
+      "curves": [
+        {
+          "id": "CRV-0001",
+          "from_chainage_km": 40,
+          "to_chainage_km": 42.5,
+          "radius_m": 1200,
+          "hand": "LEFT"
+        },
+        {
+          "id": "CRV-0002",
+          "from_chainage_km": 175,
+          "to_chainage_km": 178.2,
+          "radius_m": 900,
+          "hand": "RIGHT"
+        }
+      ],
+      "tunnels": [
+        {
+          "id": "TUN-0001",
+          "from_chainage_km": 95,
+          "to_chainage_km": 98.4,
+          "name": "Hill tunnel",
+          "length_m": 3400
+        }
+      ],
+      "bridges": [
+        {
+          "id": "BRG-0001",
+          "from_chainage_km": 210,
+          "to_chainage_km": 210.6,
+          "name": "River bridge",
+          "length_m": 600
+        }
+      ]
+    }
+  ],
+  "signalling": {
+    "simulation_time_step_s": 1.0,
+    "rule_set_template": null,
+    "signals": [
+      {
+        "id": "SIG-0001",
+        "name": "Alpha departure",
+        "chainage_km": 0.5,
+        "direction": "INCREASING_CHAINAGE",
+        "application": "PLACEHOLDER_NOT_ENGINEERED"
+      },
+      {
+        "id": "SIG-0002",
+        "name": "Bravo approach",
+        "chainage_km": 118,
+        "direction": "INCREASING_CHAINAGE",
+        "application": "PLACEHOLDER_NOT_ENGINEERED"
+      }
+    ]
+  },
+  "rolling_stock": {
+    "trainset_defaults": {
+      "name": "Example intercity set (setup data only)",
+      "formation": [
+        "DVT-0001",
+        "COACH-0001",
+        "COACH-0002",
+        "PWR-0001"
+      ]
+    },
+    "vehicles": [
+      {
+        "id": "PWR-0001",
+        "name": "Power car placeholder",
+        "kind": "POWER_CAR",
+        "mass_t": 82.5
+      },
+      {
+        "id": "COACH-0001",
+        "name": "Intermediate coach",
+        "kind": "COACH",
+        "mass_t": 45.0
+      },
+      {
+        "id": "COACH-0002",
+        "name": "Intermediate coach",
+        "kind": "COACH",
+        "mass_t": 45.0
+      },
+      {
+        "id": "DVT-0001",
+        "name": "Driving van trailer",
+        "kind": "DVT",
+        "mass_t": 43.0
+      }
+    ]
+  },
+  "train_paths": {
+    "stop_patterns": [
+      {
+        "id": "SFP-0001",
+        "name": "Intercity all-stops-limited",
+        "stop_station_ids": [
+          "STN-0001",
+          "STN-0002",
+          "STN-0003"
+        ]
+      }
+    ],
+    "paths": [
+      {
+        "id": "PTH-0001",
+        "name": "Forward intercity path",
+        "direction": "FORWARD",
+        "track_ids": [
+          "TRK-0001"
+        ],
+        "stop_pattern_id": "SFP-0001"
+      },
+      {
+        "id": "PTH-0002",
+        "name": "Reverse intercity path",
+        "direction": "REVERSE",
+        "track_ids": [
+          "TRK-0002"
+        ],
+        "stop_pattern_id": "SFP-0001"
+      }
+    ]
+  },
+  "services": [
+    {
+      "folder_id": "SRV-0001",
+      "name": "Intercity services (example folder)",
+      "service_groups": [
+        {
+          "id": "SRG-0001",
+          "name": "Two-hourly intercity",
+          "path_id": "PTH-0001"
+        }
+      ],
+      "timetable": [
+        {
+          "id": "SVC-0001",
+          "name": "IC 101",
+          "direction": "FORWARD",
+          "path_id": "PTH-0001",
+          "departure_utc": "06:00:00"
+        },
+        {
+          "id": "SVC-0002",
+          "name": "IC 102",
+          "direction": "REVERSE",
+          "path_id": "PTH-0002",
+          "departure_utc": "07:00:00"
+        }
+      ]
+    }
+  ],
+  "simulation": {
+    "time_step_s": 1.0,
+    "random_seed": null,
+    "start_time_s": 0,
+    "horizon_s": 3600,
+    "notes": "Run configuration placeholder - no simulation is performed in Phase 1."
+  },
+  "analysis": {
+    "notes": "Analysis configuration placeholder - no analysis is performed in Phase 1.",
+    "parameters": {}
+  },
+  "scenarios": [
+    {
+      "id": "SCN-0001",
+      "name": "Baseline",
+      "description": "Container/scenario record only - no simulation run is attached.",
+      "state": "DRAFT"
+    },
+    {
+      "id": "SCN-0002",
+      "name": "Speed profile variant",
+      "description": "Structure prepared for later parameter variations.",
+      "state": "DRAFT"
+    }
+  ],
+  "reporting": {
+    "report_title": "Demo Intercity Line - Phase-1 project record",
+    "author": "",
+    "organisation": "",
+    "notes": "Report metadata only - no report is generated in Phase 1."
+  }
+}

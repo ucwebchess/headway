@@ -1,0 +1,1962 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "PRJ-GRR-01",
+    "name": "GRR-01 Reference Project (Part A - physical infrastructure)",
+    "project_type": "REFERENCE_TEST_PROJECT",
+    "data_status": "SYNTHETIC",
+    "description": "GRR-01 Part-A reference project: one alignment over 0-50 km, 50 topology nodes, 59 track edges, 4 stations, 9 platforms, 14 stopping marks and 9 observation points. Static physical infrastructure only.",
+    "engineering_status": "REFERENCE_ASSUMPTIONS",
+    "created_utc": "2026-02-01T09:00:00Z",
+    "modified_utc": "2026-02-01T09:00:00Z"
+  },
+  "display_units": {
+    "chainage": "km",
+    "track_distance": "m",
+    "elevation": "m",
+    "speed": "km/h",
+    "mass": "t",
+    "force": "kN",
+    "power": "kW",
+    "time": "s",
+    "acceleration": "m/s^2",
+    "gradient": "%",
+    "curve_radius": "m"
+  },
+  "reference_system": {
+    "alignment_id": "ALN-MAIN",
+    "chainage_start_km": 0.0,
+    "chainage_end_km": 50.0,
+    "chainage_origin_name": "Alpha",
+    "chainage_end_name": "Delta",
+    "projection": "X_Y",
+    "coordinate_system": "LOCAL",
+    "datum": "LOCAL",
+    "forward_direction": "INCREASING_CHAINAGE",
+    "reverse_direction": "DECREASING_CHAINAGE",
+    "curve_radius_convention": "SIGNED_LEFT_POSITIVE"
+  },
+  "provenance": {
+    "created_by": "GRR-01 reference fixture",
+    "tool_name": "railway_headway_sim",
+    "tool_version": null,
+    "source": "GRR-01 Part A frozen physical inventory (Phase-2 reconstruction)",
+    "notes": "Static physical setup data and static geometry benchmarks only. No train simulation, signalling, blocking-time, headway or capacity results are present.",
+    "approved_amendments": [
+      {
+        "id": "GRR-AMD-001",
+        "status": "APPROVED",
+        "date_utc": "2026-02-01",
+        "object_id": "STOP-V-P1-R",
+        "field": "position_m",
+        "from": 220.0,
+        "to": 250.0,
+        "reason": "Approved reference amendment: the Valley P1 reverse stopping mark is recorded at 250.0 m. The frozen pre-amendment value (220.0 m) is preserved in docs/GRR-01_FROZEN_PHYSICAL_v1.0.json; no object count changes."
+      },
+      {
+        "id": "GRR-AMD-003",
+        "status": "APPROVED",
+        "date_utc": "2026-02-01",
+        "object_id": "N-DEL-E2",
+        "field": "attachment",
+        "from": "unattached (Delta node without an incident Delta edge)",
+        "to": "attached by open-line edge TR-O-VAL-DEL-ML2",
+        "reason": "Delta group declares 6 nodes and 4 edges; a connected 6-node region needs 5 edges. The sixth node is attached by the neighbouring open-line ML2 edge, so all frozen object counts (50 nodes / 59 edges / Delta 6-4) are unchanged."
+      },
+      {
+        "id": "GRR-AMD-004",
+        "status": "APPROVED",
+        "date_utc": "2026-02-01",
+        "object_id": "PLT-VAL-P2",
+        "field": "usable_start_m / usable_end_m",
+        "from": "usable range not reconciled with the frozen Valley P2 benchmark boundary",
+        "to": "usable range 100.0 - 500.0 m (usable_length_m 400.0 m)",
+        "reason": "The frozen Valley P2 benchmark evaluates the reference HSR train length from front 200.0 m against the edge and requires the 500.0 m eastern boundary to be the platform boundary itself (98.0 m rear clearance). The platform usable range is therefore recorded as 100.0 - 500.0 m so that the critical boundary and the clearance are computed from platform data instead of being hard-coded. No object count changes."
+      }
+    ]
+  },
+  "infrastructure": [
+    {
+      "id": "LYR-MAIN",
+      "name": "GRR-01 main infrastructure layer",
+      "physical_mode": "PHYSICAL",
+      "comment": "GRR-01 Part A physical infrastructure. Typed Phase-2 catalogues only; legacy Phase-1 opaque catalogues are intentionally empty.",
+      "alignments": [
+        {
+          "id": "ALN-MAIN",
+          "name": "GRR-01 main alignment (Alpha - Delta)",
+          "start_chainage_km": 0.0,
+          "end_chainage_km": 50.0
+        }
+      ],
+      "track_groups": [
+        {
+          "id": "TG-ML1",
+          "name": "Main line 1 (up)",
+          "directionality": "BOTH",
+          "normal_direction": "FORWARD"
+        },
+        {
+          "id": "TG-ML2",
+          "name": "Main line 2 (down)",
+          "directionality": "BOTH",
+          "normal_direction": "REVERSE"
+        }
+      ],
+      "horizontal_geometry": [
+        {
+          "id": "HGR-01",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 0.0,
+          "end_chainage_km": 2.5,
+          "type": "STRAIGHT"
+        },
+        {
+          "id": "HGR-02",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 2.5,
+          "end_chainage_km": 18.0,
+          "type": "CURVE",
+          "radius_m": 1800.0,
+          "handedness": "LEFT"
+        },
+        {
+          "id": "HGR-03",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 18.0,
+          "end_chainage_km": 22.0,
+          "type": "STRAIGHT"
+        },
+        {
+          "id": "HGR-04",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 22.0,
+          "end_chainage_km": 35.0,
+          "type": "CURVE",
+          "radius_m": 1200.0,
+          "handedness": "RIGHT"
+        },
+        {
+          "id": "HGR-05",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 35.0,
+          "end_chainage_km": 40.5,
+          "type": "STRAIGHT"
+        },
+        {
+          "id": "HGR-06",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 40.5,
+          "end_chainage_km": 47.0,
+          "type": "CURVE",
+          "radius_m": 2000.0,
+          "handedness": "LEFT"
+        },
+        {
+          "id": "HGR-07",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 47.0,
+          "end_chainage_km": 50.0,
+          "type": "STRAIGHT"
+        }
+      ],
+      "vertical_profiles": [
+        {
+          "id": "VP-MAIN",
+          "alignment_id": "ALN-MAIN",
+          "source_mode": "ELEVATION_POINTS",
+          "points": [
+            {
+              "id": "VPP-01",
+              "chainage_km": 0.0,
+              "elevation_m": 120.0
+            },
+            {
+              "id": "VPP-02",
+              "chainage_km": 2.5,
+              "elevation_m": 120.5
+            },
+            {
+              "id": "VPP-03",
+              "chainage_km": 6.0,
+              "elevation_m": 124.0
+            },
+            {
+              "id": "VPP-04",
+              "chainage_km": 10.0,
+              "elevation_m": 128.5
+            },
+            {
+              "id": "VPP-05",
+              "chainage_km": 15.0,
+              "elevation_m": 132.0
+            },
+            {
+              "id": "VPP-06",
+              "chainage_km": 20.0,
+              "elevation_m": 135.5
+            },
+            {
+              "id": "VPP-07",
+              "chainage_km": 25.0,
+              "elevation_m": 138.0
+            },
+            {
+              "id": "VPP-08",
+              "chainage_km": 30.0,
+              "elevation_m": 136.5
+            },
+            {
+              "id": "VPP-09",
+              "chainage_km": 35.0,
+              "elevation_m": 133.0
+            },
+            {
+              "id": "VPP-10",
+              "chainage_km": 38.0,
+              "elevation_m": 131.5
+            },
+            {
+              "id": "VPP-11",
+              "chainage_km": 42.0,
+              "elevation_m": 129.0
+            },
+            {
+              "id": "VPP-12",
+              "chainage_km": 46.0,
+              "elevation_m": 126.0
+            },
+            {
+              "id": "VPP-13",
+              "chainage_km": 50.0,
+              "elevation_m": 124.5
+            }
+          ]
+        }
+      ],
+      "speed_restrictions": [
+        {
+          "id": "SPR-01",
+          "name": "Alpha station area",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 0.0,
+          "end_chainage_km": 2.5,
+          "speed_kmh": 80,
+          "direction": "BOTH",
+          "type": "PERMANENT"
+        },
+        {
+          "id": "SPR-02",
+          "name": "Alpha - Central running line",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 2.5,
+          "end_chainage_km": 18.0,
+          "speed_kmh": 300,
+          "direction": "BOTH",
+          "type": "PERMANENT"
+        },
+        {
+          "id": "SPR-03",
+          "name": "XC-24 crossing area",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 18.0,
+          "end_chainage_km": 22.0,
+          "speed_kmh": 250,
+          "direction": "BOTH",
+          "type": "PERMANENT"
+        },
+        {
+          "id": "SPR-04",
+          "name": "Central - Valley running line",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 22.0,
+          "end_chainage_km": 35.0,
+          "speed_kmh": 300,
+          "direction": "BOTH",
+          "type": "PERMANENT"
+        },
+        {
+          "id": "SPR-05",
+          "name": "Valley approach",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 35.0,
+          "end_chainage_km": 40.5,
+          "speed_kmh": 280,
+          "direction": "BOTH",
+          "type": "PERMANENT"
+        },
+        {
+          "id": "SPR-06",
+          "name": "Valley - Delta running line",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 40.5,
+          "end_chainage_km": 47.0,
+          "speed_kmh": 260,
+          "direction": "BOTH",
+          "type": "PERMANENT"
+        },
+        {
+          "id": "SPR-07",
+          "name": "Delta station area",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 47.0,
+          "end_chainage_km": 50.0,
+          "speed_kmh": 90,
+          "direction": "BOTH",
+          "type": "PERMANENT"
+        },
+        {
+          "id": "SPR-08",
+          "name": "Reverse-direction restriction (42 - 44 km)",
+          "alignment_id": "ALN-MAIN",
+          "start_chainage_km": 42.0,
+          "end_chainage_km": 44.0,
+          "speed_kmh": 240,
+          "direction": "REVERSE",
+          "type": "PERMANENT_DIRECTIONAL"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "N-ALP-W",
+          "type": "BUFFER_STOP",
+          "chainage_km": 0.0,
+          "name": "Alpha west buffer stop"
+        },
+        {
+          "id": "N-ALP-U1",
+          "type": "SWITCH",
+          "chainage_km": 0.35,
+          "name": "Alpha west ladder switch 1",
+          "station_id": "STA-ALPHA"
+        },
+        {
+          "id": "N-ALP-U2",
+          "type": "SWITCH",
+          "chainage_km": 0.75,
+          "name": "Alpha west ladder switch 2",
+          "station_id": "STA-ALPHA"
+        },
+        {
+          "id": "N-ALP-SDG",
+          "type": "BUFFER_STOP",
+          "chainage_km": 1.15,
+          "name": "Alpha stabling siding buffer",
+          "station_id": "STA-ALPHA"
+        },
+        {
+          "id": "N-ALP-E1",
+          "type": "SWITCH",
+          "chainage_km": 1.55,
+          "name": "Alpha east ladder switch",
+          "station_id": "STA-ALPHA"
+        },
+        {
+          "id": "N-ALP-E",
+          "type": "BUFFER_STOP",
+          "chainage_km": 2.5,
+          "name": "Alpha east buffer stop",
+          "station_id": "STA-ALPHA"
+        },
+        {
+          "id": "N-CEN-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 15.0,
+          "name": "Central west boundary",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 28.0,
+          "name": "Central east boundary",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-X-A",
+          "type": "SWITCH",
+          "chainage_km": 15.35,
+          "name": "Central west ladder switch A",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-X-B",
+          "type": "SWITCH",
+          "chainage_km": 15.45,
+          "name": "Central west ladder switch B",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-X-C",
+          "type": "SWITCH",
+          "chainage_km": 27.85,
+          "name": "Central east ladder switch C",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-X-D",
+          "type": "SWITCH",
+          "chainage_km": 27.9,
+          "name": "Central east ladder switch D",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P1-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 15.5,
+          "name": "Central P1 west end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P1-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 19.5,
+          "name": "Central P1 east end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P2-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 15.5,
+          "name": "Central P2 west end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P2-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 27.0,
+          "name": "Central P2 east end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P3-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 15.6,
+          "name": "Central P3 west end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P3-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 24.0,
+          "name": "Central P3 east end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P4-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 15.5,
+          "name": "Central P4 west end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-P4-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 27.5,
+          "name": "Central P4 east end",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-J1",
+          "type": "SWITCH",
+          "chainage_km": 25.0,
+          "name": "Central mid-yard switch J1",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-J2",
+          "type": "SWITCH",
+          "chainage_km": 27.6,
+          "name": "Central east yard switch J2",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-J3",
+          "type": "SWITCH",
+          "chainage_km": 26.2,
+          "name": "Central mid-yard switch J3",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-CEN-Y",
+          "type": "CONNECTION",
+          "chainage_km": 25.5,
+          "name": "Central yard connection",
+          "station_id": "STA-CEN"
+        },
+        {
+          "id": "N-XC-W",
+          "type": "CONNECTION",
+          "chainage_km": 20.0,
+          "name": "XC-24 west trunk"
+        },
+        {
+          "id": "N-XC-E",
+          "type": "CONNECTION",
+          "chainage_km": 22.0,
+          "name": "XC-24 east trunk"
+        },
+        {
+          "id": "N-XC-ML1-A",
+          "type": "SWITCH",
+          "chainage_km": 20.2,
+          "name": "XC-24 ML1 west crossover switch"
+        },
+        {
+          "id": "N-XC-ML1-B",
+          "type": "SWITCH",
+          "chainage_km": 21.8,
+          "name": "XC-24 ML1 east crossover switch"
+        },
+        {
+          "id": "N-XC-ML2-A",
+          "type": "SWITCH",
+          "chainage_km": 20.25,
+          "name": "XC-24 ML2 west crossover switch"
+        },
+        {
+          "id": "N-XC-ML2-B",
+          "type": "SWITCH",
+          "chainage_km": 21.85,
+          "name": "XC-24 ML2 east crossover switch"
+        },
+        {
+          "id": "N-XC-X1",
+          "type": "TRACK_CONNECTION",
+          "chainage_km": 20.9,
+          "name": "XC-24 intermediate connection 1"
+        },
+        {
+          "id": "N-XC-X2",
+          "type": "TRACK_CONNECTION",
+          "chainage_km": 21.1,
+          "name": "XC-24 intermediate connection 2"
+        },
+        {
+          "id": "N-VAL-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 37.0,
+          "name": "Valley west boundary",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 44.0,
+          "name": "Valley east boundary",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-T1-A",
+          "type": "SWITCH",
+          "chainage_km": 38.0,
+          "name": "Valley through line 1 switch A",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-T1-B",
+          "type": "SWITCH",
+          "chainage_km": 43.2,
+          "name": "Valley through line 1 switch B",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-T2-A",
+          "type": "SWITCH",
+          "chainage_km": 38.4,
+          "name": "Valley through line 2 switch A",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-T2-B",
+          "type": "SWITCH",
+          "chainage_km": 43.6,
+          "name": "Valley through line 2 switch B",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-P1-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 38.1,
+          "name": "Valley P1 west end",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-P1-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 40.0,
+          "name": "Valley P1 east end",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-P2-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 38.5,
+          "name": "Valley P2 west end",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-P2-E",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 41.0,
+          "name": "Valley P2 east end",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-XA",
+          "type": "SWITCH",
+          "chainage_km": 37.5,
+          "name": "Valley west ladder switch A",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-VAL-XB",
+          "type": "SWITCH",
+          "chainage_km": 43.8,
+          "name": "Valley east ladder switch B",
+          "station_id": "STA-VAL"
+        },
+        {
+          "id": "N-DEL-W",
+          "type": "TRACK_CONNECTION",
+          "chainage_km": 47.0,
+          "name": "Delta west connection (ML1)",
+          "station_id": "STA-DELTA"
+        },
+        {
+          "id": "N-DEL-THR",
+          "type": "SWITCH",
+          "chainage_km": 47.4,
+          "name": "Delta station throat",
+          "station_id": "STA-DELTA"
+        },
+        {
+          "id": "N-DEL-J",
+          "type": "SWITCH",
+          "chainage_km": 47.5,
+          "name": "Delta platform ladder switch",
+          "station_id": "STA-DELTA"
+        },
+        {
+          "id": "N-DEL-P1-W",
+          "type": "STATION_BOUNDARY",
+          "chainage_km": 47.6,
+          "name": "Delta P1 west end",
+          "station_id": "STA-DELTA"
+        },
+        {
+          "id": "N-DEL-P1-E",
+          "type": "BUFFER_STOP",
+          "chainage_km": 49.0,
+          "name": "Delta P1 buffer stop",
+          "station_id": "STA-DELTA"
+        },
+        {
+          "id": "N-DEL-E2",
+          "type": "TRACK_CONNECTION",
+          "chainage_km": 49.6,
+          "name": "Delta east connection (ML2)",
+          "station_id": "STA-DELTA"
+        }
+      ],
+      "tracks": [
+        {
+          "id": "TR-O-ALP-CEN-ML1",
+          "from_node": "N-ALP-E",
+          "to_node": "N-CEN-W",
+          "length_m": 12500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 2.5,
+            "end_km": 15.0
+          }
+        },
+        {
+          "id": "TR-O-ALP-CEN-ML2",
+          "from_node": "N-ALP-U2",
+          "to_node": "N-CEN-W",
+          "length_m": 14250.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 0.75,
+            "end_km": 15.0
+          }
+        },
+        {
+          "id": "TR-O-CEN-VAL-ML1",
+          "from_node": "N-CEN-E",
+          "to_node": "N-VAL-W",
+          "length_m": 9000.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 28.0,
+            "end_km": 37.0
+          }
+        },
+        {
+          "id": "TR-O-CEN-VAL-ML2",
+          "from_node": "N-CEN-E",
+          "to_node": "N-VAL-XA",
+          "length_m": 9500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 28.0,
+            "end_km": 37.5
+          }
+        },
+        {
+          "id": "TR-O-CEN-VAL-SL-A",
+          "from_node": "N-CEN-X-C",
+          "to_node": "N-VAL-W",
+          "length_m": 9150.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 27.85,
+            "end_km": 37.0
+          }
+        },
+        {
+          "id": "TR-O-CEN-VAL-SL-B",
+          "from_node": "N-CEN-X-D",
+          "to_node": "N-VAL-T2-A",
+          "length_m": 10500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 27.9,
+            "end_km": 38.4
+          }
+        },
+        {
+          "id": "TR-O-VAL-DEL-ML1",
+          "from_node": "N-VAL-E",
+          "to_node": "N-DEL-W",
+          "length_m": 3000.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 44.0,
+            "end_km": 47.0
+          }
+        },
+        {
+          "id": "TR-O-VAL-DEL-ML2",
+          "from_node": "N-VAL-E",
+          "to_node": "N-DEL-E2",
+          "length_m": 5600.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 44.0,
+            "end_km": 49.6
+          }
+        },
+        {
+          "id": "TR-A-W-U1",
+          "from_node": "N-ALP-W",
+          "to_node": "N-ALP-U1",
+          "length_m": 350.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 0.0,
+            "end_km": 0.35
+          }
+        },
+        {
+          "id": "TR-A-U1-U2",
+          "from_node": "N-ALP-U1",
+          "to_node": "N-ALP-U2",
+          "length_m": 400.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 0.35,
+            "end_km": 0.75
+          }
+        },
+        {
+          "id": "TR-A-SDG-E1",
+          "from_node": "N-ALP-SDG",
+          "to_node": "N-ALP-E1",
+          "length_m": 400.0,
+          "directionality": "FORWARD_ONLY",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 1.15,
+            "end_km": 1.55
+          }
+        },
+        {
+          "id": "TR-A-E1-E",
+          "from_node": "N-ALP-E1",
+          "to_node": "N-ALP-E",
+          "length_m": 900.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 1.6,
+            "end_km": 2.5
+          }
+        },
+        {
+          "id": "TR-C-W-LDR-ML1",
+          "from_node": "N-CEN-W",
+          "to_node": "N-CEN-X-A",
+          "length_m": 350.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.0,
+            "end_km": 15.35
+          }
+        },
+        {
+          "id": "TR-C-W-LDR-ML2",
+          "from_node": "N-CEN-X-B",
+          "to_node": "N-CEN-W",
+          "length_m": 450.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.0,
+            "end_km": 15.45
+          }
+        },
+        {
+          "id": "TR-C-W-P1-CON",
+          "from_node": "N-CEN-X-A",
+          "to_node": "N-CEN-P1-W",
+          "length_m": 150.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.35,
+            "end_km": 15.5
+          }
+        },
+        {
+          "id": "TR-C-W-P2-CON",
+          "from_node": "N-CEN-X-B",
+          "to_node": "N-CEN-P2-W",
+          "length_m": 50.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.45,
+            "end_km": 15.5
+          }
+        },
+        {
+          "id": "TR-C-W-P3-CON",
+          "from_node": "N-CEN-X-A",
+          "to_node": "N-CEN-P3-W",
+          "length_m": 250.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.35,
+            "end_km": 15.6
+          }
+        },
+        {
+          "id": "TR-C-XA-P4",
+          "from_node": "N-CEN-X-A",
+          "to_node": "N-CEN-P4-W",
+          "length_m": 150.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.35,
+            "end_km": 15.5
+          }
+        },
+        {
+          "id": "TR-C-XB-P3",
+          "from_node": "N-CEN-X-B",
+          "to_node": "N-CEN-P3-W",
+          "length_m": 150.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.45,
+            "end_km": 15.6
+          }
+        },
+        {
+          "id": "TR-C-P1",
+          "from_node": "N-CEN-P1-W",
+          "to_node": "N-CEN-P1-E",
+          "length_m": 4000.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.5,
+            "end_km": 19.5
+          }
+        },
+        {
+          "id": "TR-C-P2",
+          "from_node": "N-CEN-P2-W",
+          "to_node": "N-CEN-P2-E",
+          "length_m": 11500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.5,
+            "end_km": 27.0
+          }
+        },
+        {
+          "id": "TR-C-P3",
+          "from_node": "N-CEN-P3-W",
+          "to_node": "N-CEN-P3-E",
+          "length_m": 8400.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.6,
+            "end_km": 24.0
+          }
+        },
+        {
+          "id": "TR-C-P4",
+          "from_node": "N-CEN-P4-W",
+          "to_node": "N-CEN-P4-E",
+          "length_m": 12000.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.5,
+            "end_km": 27.5
+          }
+        },
+        {
+          "id": "TR-C-P2-LNK",
+          "from_node": "N-CEN-P2-W",
+          "to_node": "N-XC-ML1-A",
+          "length_m": 4700.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 15.5,
+            "end_km": 20.2
+          }
+        },
+        {
+          "id": "TR-C-P3-LNK",
+          "from_node": "N-XC-E",
+          "to_node": "N-CEN-P3-E",
+          "length_m": 2000.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 22.0,
+            "end_km": 24.0
+          }
+        },
+        {
+          "id": "TR-C-P1-LNK",
+          "from_node": "N-CEN-P1-E",
+          "to_node": "N-CEN-J1",
+          "length_m": 5500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 19.5,
+            "end_km": 25.0
+          }
+        },
+        {
+          "id": "TR-C-J1-J3",
+          "from_node": "N-CEN-J1",
+          "to_node": "N-CEN-J3",
+          "length_m": 1200.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 25.0,
+            "end_km": 26.2
+          }
+        },
+        {
+          "id": "TR-C-J3-J2",
+          "from_node": "N-CEN-J3",
+          "to_node": "N-CEN-J2",
+          "length_m": 1400.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 26.2,
+            "end_km": 27.6
+          }
+        },
+        {
+          "id": "TR-C-J1-Y",
+          "from_node": "N-CEN-J1",
+          "to_node": "N-CEN-Y",
+          "length_m": 500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 25.0,
+            "end_km": 25.5
+          }
+        },
+        {
+          "id": "TR-C-Y-J2",
+          "from_node": "N-CEN-Y",
+          "to_node": "N-CEN-J2",
+          "length_m": 2100.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 25.5,
+            "end_km": 27.6
+          }
+        },
+        {
+          "id": "TR-C-P2-E-CON",
+          "from_node": "N-CEN-P2-E",
+          "to_node": "N-CEN-X-C",
+          "length_m": 850.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 27.0,
+            "end_km": 27.85
+          }
+        },
+        {
+          "id": "TR-C-P4-E-CON",
+          "from_node": "N-CEN-P4-E",
+          "to_node": "N-CEN-X-D",
+          "length_m": 400.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 27.5,
+            "end_km": 27.9
+          }
+        },
+        {
+          "id": "TR-C-E-U2-X",
+          "from_node": "N-CEN-X-D",
+          "to_node": "N-CEN-X-C",
+          "length_m": 120.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 27.85,
+            "end_km": 27.9
+          }
+        },
+        {
+          "id": "TR-C-E-X-U1",
+          "from_node": "N-CEN-X-C",
+          "to_node": "N-CEN-E",
+          "length_m": 150.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 27.85,
+            "end_km": 28.0
+          }
+        },
+        {
+          "id": "TR-C-E-X-L1",
+          "from_node": "N-CEN-X-D",
+          "to_node": "N-CEN-E",
+          "length_m": 100.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 27.9,
+            "end_km": 28.0
+          }
+        },
+        {
+          "id": "TR-X-ML1-STRAIGHT",
+          "from_node": "N-XC-ML1-A",
+          "to_node": "N-XC-ML1-B",
+          "length_m": 1600.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 20.2,
+            "end_km": 21.8
+          }
+        },
+        {
+          "id": "TR-X-ML2-STRAIGHT",
+          "from_node": "N-XC-ML2-A",
+          "to_node": "N-XC-ML2-B",
+          "length_m": 1600.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 20.25,
+            "end_km": 21.85
+          }
+        },
+        {
+          "id": "TR-X-ML1-ML2",
+          "from_node": "N-XC-ML1-A",
+          "to_node": "N-XC-ML2-B",
+          "length_m": 1850.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 20.2,
+            "end_km": 21.85
+          }
+        },
+        {
+          "id": "TR-X-ML2-ML1",
+          "from_node": "N-XC-ML2-A",
+          "to_node": "N-XC-ML1-B",
+          "length_m": 1750.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 20.25,
+            "end_km": 21.8
+          }
+        },
+        {
+          "id": "TR-X-W-X1",
+          "from_node": "N-XC-W",
+          "to_node": "N-XC-X1",
+          "length_m": 900.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 20.0,
+            "end_km": 20.9
+          }
+        },
+        {
+          "id": "TR-X-X1-E",
+          "from_node": "N-XC-X1",
+          "to_node": "N-XC-E",
+          "length_m": 1100.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 20.9,
+            "end_km": 22.0
+          }
+        },
+        {
+          "id": "TR-X-W-X2",
+          "from_node": "N-XC-W",
+          "to_node": "N-XC-X2",
+          "length_m": 1100.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 20.0,
+            "end_km": 21.1
+          }
+        },
+        {
+          "id": "TR-X-X2-E",
+          "from_node": "N-XC-X2",
+          "to_node": "N-XC-E",
+          "length_m": 900.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 21.1,
+            "end_km": 22.0
+          }
+        },
+        {
+          "id": "TR-V-THRU1",
+          "from_node": "N-VAL-W",
+          "to_node": "N-VAL-T1-B",
+          "length_m": 6200.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 37.0,
+            "end_km": 43.2
+          }
+        },
+        {
+          "id": "TR-V-T1A-P1W",
+          "from_node": "N-VAL-T1-A",
+          "to_node": "N-VAL-P1-W",
+          "length_m": 100.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 38.0,
+            "end_km": 38.1
+          }
+        },
+        {
+          "id": "TR-V-P1",
+          "from_node": "N-VAL-P1-W",
+          "to_node": "N-VAL-P1-E",
+          "length_m": 1900.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 38.1,
+            "end_km": 40.0
+          }
+        },
+        {
+          "id": "TR-V-P1E-T1B",
+          "from_node": "N-VAL-P1-E",
+          "to_node": "N-VAL-T1-B",
+          "length_m": 3200.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 40.0,
+            "end_km": 43.2
+          }
+        },
+        {
+          "id": "TR-V-W-XA",
+          "from_node": "N-VAL-W",
+          "to_node": "N-VAL-XA",
+          "length_m": 500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 37.0,
+            "end_km": 37.5
+          }
+        },
+        {
+          "id": "TR-V-XA-T2A",
+          "from_node": "N-VAL-XA",
+          "to_node": "N-VAL-T2-A",
+          "length_m": 900.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 37.5,
+            "end_km": 38.4
+          }
+        },
+        {
+          "id": "TR-V-THRU2",
+          "from_node": "N-VAL-T2-A",
+          "to_node": "N-VAL-T2-B",
+          "length_m": 5200.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 38.4,
+            "end_km": 43.6
+          }
+        },
+        {
+          "id": "TR-V-T2B-E",
+          "from_node": "N-VAL-T2-B",
+          "to_node": "N-VAL-E",
+          "length_m": 400.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 43.6,
+            "end_km": 44.0
+          }
+        },
+        {
+          "id": "TR-V-XA-P2W",
+          "from_node": "N-VAL-XA",
+          "to_node": "N-VAL-P2-W",
+          "length_m": 1000.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 37.5,
+            "end_km": 38.5
+          }
+        },
+        {
+          "id": "TR-V-P2",
+          "from_node": "N-VAL-P2-W",
+          "to_node": "N-VAL-P2-E",
+          "length_m": 2500.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 38.5,
+            "end_km": 41.0
+          }
+        },
+        {
+          "id": "TR-V-P2E-XB",
+          "from_node": "N-VAL-P2-E",
+          "to_node": "N-VAL-XB",
+          "length_m": 2800.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 41.0,
+            "end_km": 43.8
+          }
+        },
+        {
+          "id": "TR-V-XB-E",
+          "from_node": "N-VAL-XB",
+          "to_node": "N-VAL-E",
+          "length_m": 200.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML2",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 43.8,
+            "end_km": 44.0
+          }
+        },
+        {
+          "id": "TR-D-W-THR",
+          "from_node": "N-DEL-W",
+          "to_node": "N-DEL-THR",
+          "length_m": 400.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 47.0,
+            "end_km": 47.4
+          }
+        },
+        {
+          "id": "TR-D-THR-J",
+          "from_node": "N-DEL-THR",
+          "to_node": "N-DEL-J",
+          "length_m": 150.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 47.4,
+            "end_km": 47.55
+          }
+        },
+        {
+          "id": "TR-D-J-P1W",
+          "from_node": "N-DEL-J",
+          "to_node": "N-DEL-P1-W",
+          "length_m": 50.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 47.55,
+            "end_km": 47.6
+          }
+        },
+        {
+          "id": "TR-D-P1",
+          "from_node": "N-DEL-P1-W",
+          "to_node": "N-DEL-P1-E",
+          "length_m": 1400.0,
+          "directionality": "BOTH",
+          "track_group_id": "TG-ML1",
+          "geometry_source": "ALIGNMENT",
+          "elevation_source": "ALIGNMENT_MAPPING",
+          "chainage_map": {
+            "mode": "LINEAR",
+            "start_km": 47.6,
+            "end_km": 49.0
+          }
+        }
+      ],
+      "stations": [
+        {
+          "id": "STA-ALPHA",
+          "name": "Alpha",
+          "type": "TERMINAL",
+          "reference_chainage_km": 1.2,
+          "platform_ids": [
+            "PLT-ALP-P1",
+            "PLT-ALP-P2"
+          ]
+        },
+        {
+          "id": "STA-CEN",
+          "name": "Central",
+          "type": "INTERMEDIATE",
+          "reference_chainage_km": 21.0,
+          "platform_ids": [
+            "PLT-CEN-P1",
+            "PLT-CEN-P2",
+            "PLT-CEN-P3",
+            "PLT-CEN-P4"
+          ]
+        },
+        {
+          "id": "STA-VAL",
+          "name": "Valley",
+          "type": "INTERMEDIATE",
+          "reference_chainage_km": 39.0,
+          "platform_ids": [
+            "PLT-VAL-P1",
+            "PLT-VAL-P2"
+          ]
+        },
+        {
+          "id": "STA-DELTA",
+          "name": "Delta",
+          "type": "TERMINAL",
+          "reference_chainage_km": 48.3,
+          "platform_ids": [
+            "PLT-DEL-P1"
+          ]
+        }
+      ],
+      "platforms": [
+        {
+          "id": "PLT-ALP-P1",
+          "station_id": "STA-ALPHA",
+          "track_id": "TR-A-W-U1",
+          "usable_start_m": 20.0,
+          "usable_end_m": 340.0,
+          "usable_length_m": 320.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-A-P1-ARR",
+            "STOP-A-P1-DEP"
+          ]
+        },
+        {
+          "id": "PLT-ALP-P2",
+          "station_id": "STA-ALPHA",
+          "track_id": "TR-A-E1-E",
+          "usable_start_m": 40.0,
+          "usable_end_m": 880.0,
+          "usable_length_m": 840.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-A-P2-ARR",
+            "STOP-A-P2-DEP"
+          ]
+        },
+        {
+          "id": "PLT-CEN-P1",
+          "station_id": "STA-CEN",
+          "track_id": "TR-C-P1",
+          "usable_start_m": 150.0,
+          "usable_end_m": 360.0,
+          "usable_length_m": 210.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-C-P1-ARR",
+            "STOP-C-P1-DEP"
+          ]
+        },
+        {
+          "id": "PLT-CEN-P2",
+          "station_id": "STA-CEN",
+          "track_id": "TR-C-P2",
+          "usable_start_m": 230.0,
+          "usable_end_m": 11000.0,
+          "usable_length_m": 10770.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-C-P2-ARR",
+            "STOP-C-P2-DEP",
+            "STOP-C-P2-ALT"
+          ]
+        },
+        {
+          "id": "PLT-CEN-P3",
+          "station_id": "STA-CEN",
+          "track_id": "TR-C-P3",
+          "usable_start_m": 100.0,
+          "usable_end_m": 8300.0,
+          "usable_length_m": 8200.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-C-P3-ARR",
+            "STOP-C-P3-DEP"
+          ]
+        },
+        {
+          "id": "PLT-CEN-P4",
+          "station_id": "STA-CEN",
+          "track_id": "TR-C-P4",
+          "usable_start_m": 120.0,
+          "usable_end_m": 11800.0,
+          "usable_length_m": 11680.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-C-P4-DEP"
+          ]
+        },
+        {
+          "id": "PLT-VAL-P1",
+          "station_id": "STA-VAL",
+          "track_id": "TR-V-P1",
+          "usable_start_m": 200.0,
+          "usable_end_m": 1600.0,
+          "usable_length_m": 1400.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-V-P1-R"
+          ]
+        },
+        {
+          "id": "PLT-VAL-P2",
+          "station_id": "STA-VAL",
+          "track_id": "TR-V-P2",
+          "usable_start_m": 100.0,
+          "usable_end_m": 500.0,
+          "usable_length_m": 400.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": []
+        },
+        {
+          "id": "PLT-DEL-P1",
+          "station_id": "STA-DELTA",
+          "track_id": "TR-D-P1",
+          "usable_start_m": 90.0,
+          "usable_end_m": 1280.0,
+          "usable_length_m": 1190.0,
+          "directionality": "BOTH",
+          "platform_track_speed_kmh": 80,
+          "stopping_mark_ids": [
+            "STOP-D-P1-DEP"
+          ]
+        }
+      ],
+      "stopping_marks": [
+        {
+          "id": "STOP-A-P1-ARR",
+          "platform_id": "PLT-ALP-P1",
+          "track_id": "TR-A-W-U1",
+          "direction": "REVERSE",
+          "position_m": 130.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-A-P1-DEP",
+          "platform_id": "PLT-ALP-P1",
+          "track_id": "TR-A-W-U1",
+          "direction": "FORWARD",
+          "position_m": 300.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-A-P2-ARR",
+          "platform_id": "PLT-ALP-P2",
+          "track_id": "TR-A-E1-E",
+          "direction": "REVERSE",
+          "position_m": 200.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-A-P2-DEP",
+          "platform_id": "PLT-ALP-P2",
+          "track_id": "TR-A-E1-E",
+          "direction": "FORWARD",
+          "position_m": 700.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P1-ARR",
+          "platform_id": "PLT-CEN-P1",
+          "track_id": "TR-C-P1",
+          "direction": "REVERSE",
+          "position_m": 170.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P1-DEP",
+          "platform_id": "PLT-CEN-P1",
+          "track_id": "TR-C-P1",
+          "direction": "FORWARD",
+          "position_m": 355.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P2-ARR",
+          "platform_id": "PLT-CEN-P2",
+          "track_id": "TR-C-P2",
+          "direction": "REVERSE",
+          "position_m": 300.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P2-DEP",
+          "platform_id": "PLT-CEN-P2",
+          "track_id": "TR-C-P2",
+          "direction": "FORWARD",
+          "position_m": 420.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P2-ALT",
+          "platform_id": "PLT-CEN-P2",
+          "track_id": "TR-C-P2",
+          "direction": "FORWARD",
+          "position_m": 445.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P3-ARR",
+          "platform_id": "PLT-CEN-P3",
+          "track_id": "TR-C-P3",
+          "direction": "REVERSE",
+          "position_m": 200.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P3-DEP",
+          "platform_id": "PLT-CEN-P3",
+          "track_id": "TR-C-P3",
+          "direction": "FORWARD",
+          "position_m": 8000.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-C-P4-DEP",
+          "platform_id": "PLT-CEN-P4",
+          "track_id": "TR-C-P4",
+          "direction": "FORWARD",
+          "position_m": 11700.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-V-P1-R",
+          "platform_id": "PLT-VAL-P1",
+          "track_id": "TR-V-P1",
+          "direction": "REVERSE",
+          "position_m": 250.0,
+          "marker_type": "EXPLICIT"
+        },
+        {
+          "id": "STOP-D-P1-DEP",
+          "platform_id": "PLT-DEL-P1",
+          "track_id": "TR-D-P1",
+          "direction": "FORWARD",
+          "position_m": 300.0,
+          "marker_type": "EXPLICIT"
+        }
+      ],
+      "observation_points": [
+        {
+          "id": "OBS-REF-FWD-ORIGIN",
+          "name": "Reference forward origin (Alpha)",
+          "type": "SERVICE_EVENT",
+          "station_id": "STA-ALPHA",
+          "event": "DEPARTURE",
+          "platform_id": "PLT-ALP-P2",
+          "track_id": "TR-A-E1-E",
+          "position_m": 700.0
+        },
+        {
+          "id": "OBS-REF-REV-ORIGIN",
+          "name": "Reference reverse origin (Delta)",
+          "type": "SERVICE_EVENT",
+          "station_id": "STA-DELTA",
+          "event": "DEPARTURE",
+          "platform_id": "PLT-DEL-P1",
+          "track_id": "TR-D-P1",
+          "position_m": 300.0
+        },
+        {
+          "id": "OBS-C-WEST",
+          "name": "Central west boundary cross-section",
+          "type": "CROSS_SECTION",
+          "node_ids": [
+            "N-CEN-W"
+          ]
+        },
+        {
+          "id": "OBS-C-EAST",
+          "name": "Central east boundary cross-section",
+          "type": "CROSS_SECTION",
+          "node_ids": [
+            "N-CEN-E"
+          ]
+        },
+        {
+          "id": "OBS-XC24",
+          "name": "XC-24 track cross-section",
+          "type": "TRACK_CROSS_SECTION",
+          "members": [
+            {
+              "track_id": "TR-X-ML1-STRAIGHT",
+              "position_m": 80.0
+            },
+            {
+              "track_id": "TR-X-ML2-STRAIGHT",
+              "position_m": 80.0
+            },
+            {
+              "track_id": "TR-X-ML1-ML2",
+              "position_m": 90.0
+            },
+            {
+              "track_id": "TR-X-ML2-ML1",
+              "position_m": 90.0
+            }
+          ]
+        },
+        {
+          "id": "OBS-V-WEST",
+          "name": "Valley west boundary cross-section",
+          "type": "CROSS_SECTION",
+          "node_ids": [
+            "N-VAL-W"
+          ]
+        },
+        {
+          "id": "OBS-V-EAST",
+          "name": "Valley east boundary cross-section",
+          "type": "CROSS_SECTION",
+          "node_ids": [
+            "N-VAL-E"
+          ]
+        },
+        {
+          "id": "OBS-FWD-DEST-APP",
+          "name": "Forward destination approach (Delta throat)",
+          "type": "CROSS_SECTION",
+          "node_ids": [
+            "N-DEL-THR"
+          ]
+        },
+        {
+          "id": "OBS-REV-DEST-APP",
+          "name": "Reverse destination approach (Alpha west ladder)",
+          "type": "CROSS_SECTION",
+          "node_ids": [
+            "N-ALP-U1"
+          ]
+        }
+      ],
+      "chainages": [],
+      "speed_profiles": [],
+      "gradients": [],
+      "curves": [],
+      "tunnels": [],
+      "bridges": []
+    }
+  ],
+  "signalling": {
+    "simulation_time_step_s": 1.0,
+    "rule_set_template": null,
+    "signals": []
+  },
+  "rolling_stock": {
+    "trainset_defaults": {},
+    "vehicles": []
+  },
+  "train_paths": {
+    "stop_patterns": [],
+    "paths": []
+  },
+  "services": [],
+  "simulation": {
+    "time_step_s": 1.0,
+    "random_seed": null,
+    "start_time_s": 0.0,
+    "horizon_s": null,
+    "notes": "Run configuration placeholder - no run is performed."
+  },
+  "analysis": {
+    "notes": "No analysis is performed in this phase.",
+    "parameters": {}
+  },
+  "scenarios": [],
+  "reporting": {
+    "report_title": "GRR-01 Part A reference project record",
+    "author": "",
+    "organisation": "",
+    "notes": "Report metadata only - no report is generated."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "PRJ-38c742fb8de9",
+    "name": "Self-check line",
+    "project_type": "TRAIN_RUN_ANALYSIS",
+    "data_status": "TEMPLATE",
+    "description": "",
+    "engineering_status": "PLANNING",
+    "created_utc": "2026-10-03T17:29:04Z",
+    "modified_utc": "2026-10-03T17:29:04Z"
+  },
+  "display_units": {
+    "chainage": "km",
+    "track_distance": "km",
+    "elevation": "m",
+    "speed": "km/h",
+    "mass": "t",
+    "force": "kN",
+    "power": "kW",
+    "time": "s",
+    "acceleration": "m/s^2",
+    "gradient": "%",
+    "curve_radius": "m"
+  },
+  "reference_system": {
+    "alignment_id": "ALN-5df4358b7535",
+    "chainage_start_km": 0.0,
+    "chainage_end_km": 42.5,
+    "chainage_origin_name": "Origin",
+    "chainage_end_name": "Terminus",
+    "projection": "X_Y",
+    "coordinate_system": "LOCAL",
+    "datum": "LOCAL",
+    "forward_direction": "INCREASING_CHAINAGE",
+    "reverse_direction": "DECREASING_CHAINAGE",
+    "curve_radius_convention": "SIGNED_LEFT_POSITIVE"
+  },
+  "provenance": {
+    "created_by": "Railway Track Headway Simulator",
+    "tool_name": "railway_headway_sim",
+    "tool_version": null,
+    "source": "new_project_template",
+    "notes": "Created from the Phase-1 project template."
+  },
+  "infrastructure": [],
+  "signalling": {
+    "simulation_time_step_s": 1.0,
+    "rule_set_template": null,
+    "signals": []
+  },
+  "rolling_stock": {
+    "trainset_defaults": {},
+    "vehicles": []
+  },
+  "train_paths": {
+    "stop_patterns": [],
+    "paths": []
+  },
+  "services": [],
+  "simulation": {
+    "time_step_s": 1.0,
+    "random_seed": null,
+    "start_time_s": 0.0,
+    "horizon_s": null,
+    "notes": "Run configuration placeholder - no run is performed in Phase 1."
+  },
+  "analysis": {
+    "notes": "Analysis configuration placeholder - no analysis is performed in Phase 1.",
+    "parameters": {}
+  },
+  "scenarios": [],
+  "reporting": {
+    "report_title": "Self-check line",
+    "author": "",
+    "organisation": "",
+    "notes": "Report metadata only - no report is generated in Phase 1."
+  }
+}
