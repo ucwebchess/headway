@@ -1,0 +1,159 @@
+{
+ "schema_version": "1.0",
+ "document_kind": "TRAIN_PATHS_COMPANION",
+ "project_id": "GRR-01",
+ "project_name": "GRR-01 Reference Project (Part A - physical infrastructure)",
+ "project_file": "examples/GRR-01.json",
+ "project_file_sha256": "ad0a26265d4e072aeedcc69161bef90f200c20b4efb12a4d56a5276c4a4f7a56",
+ "project_canonical_hash": "5189aaa2340c17022666ef44772c7d34f99b2fea9ee9609bb7b7513238ef4dbe",
+ "project_declares_train_paths": [],
+ "notes": [
+  "Declared train paths of the GRR-01 reference railway, kept in a companion file.",
+  "examples/GRR-01.json stays frozen and declares train_paths.paths == [] itself.",
+  "A path is data of the Phase-4A interchange form: {id, edges: [{edge_id, traversal}]}.",
+  "Selection rule (stated verbatim): Start candidates: every edge of the frozen project on which an Alpha station platform is declared (platform.track_id). End candidates: every edge on which a Delta station platform is declared. Among all Alpha -> Delta walks of the frozen graph whose first edge is a Start candidate and whose last edge is an End candidate, choose (a) the walk of minimum total length_m, then (b) the walk of minimum edge count, then (c) the walk whose ordered edge-id list is lexicographically smallest.",
+  "The rule selects exactly one walk: 14 edges, 47 400.0 m, from the Alpha P2 platform edge (PLT-ALP-P2 on TR-A-E1-E) through the Central P4 platform road (PLT-CEN-P4 on TR-C-P4) and the Valley through road (TR-V-THRU2) to the Delta P1 platform edge (PLT-DEL-P1 on TR-D-P1); the Alpha P1 alternative is 1 600 m longer.",
+  "PATH-H1-F is that walk W, declared in its travel order; PATH-H1-R is reverse(W): the same edge entries in reverse order with the complementary traversal (WITH_EDGE <-> AGAINST_EDGE). The two paths are one physical corridor run in opposite directions.",
+  "Every edge id and every traversal is derived from the frozen project's own track endpoints; no traversal is hand-typed, and this file is never merged into GRR-01.",
+  "No project key, value, count or rule of the frozen project is changed by this file."
+ ],
+ "train_paths": {
+  "stop_patterns": [],
+  "paths": [
+   {
+    "id": "PATH-H1-F",
+    "name": "GRR-01 reference running path, Alpha -> Delta (forward order)",
+    "description": "Alpha P2 platform edge (declared reference forward origin, PLT-ALP-P2) through Central P4 and Valley THRU2 to the Delta P1 platform edge (PLT-DEL-P1), in forward running order.",
+    "start_node": "N-ALP-E1",
+    "end_node": "N-DEL-P1-E",
+    "edge_count": 14,
+    "computed_length_m": 47400.0,
+    "edges": [
+     {
+      "edge_id": "TR-A-E1-E",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-O-ALP-CEN-ML1",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-C-W-LDR-ML1",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-C-XA-P4",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-C-P4",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-C-P4-E-CON",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-O-CEN-VAL-SL-B",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-V-THRU2",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-V-T2B-E",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-O-VAL-DEL-ML1",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-D-W-THR",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-D-THR-J",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-D-J-P1W",
+      "traversal": "WITH_EDGE"
+     },
+     {
+      "edge_id": "TR-D-P1",
+      "traversal": "WITH_EDGE"
+     }
+    ]
+   },
+   {
+    "id": "PATH-H1-R",
+    "name": "GRR-01 reference running path, Delta -> Alpha (reverse order)",
+    "description": "The same physical corridor as PATH-H1-F, run from the Delta P1 platform edge (declared reference reverse origin, PLT-DEL-P1) back to the Alpha P2 platform edge, in reverse running order.",
+    "start_node": "N-DEL-P1-E",
+    "end_node": "N-ALP-E1",
+    "edge_count": 14,
+    "computed_length_m": 47400.0,
+    "edges": [
+     {
+      "edge_id": "TR-D-P1",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-D-J-P1W",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-D-THR-J",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-D-W-THR",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-O-VAL-DEL-ML1",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-V-T2B-E",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-V-THRU2",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-O-CEN-VAL-SL-B",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-C-P4-E-CON",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-C-P4",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-C-XA-P4",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-C-W-LDR-ML1",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-O-ALP-CEN-ML1",
+      "traversal": "AGAINST_EDGE"
+     },
+     {
+      "edge_id": "TR-A-E1-E",
+      "traversal": "AGAINST_EDGE"
+     }
+    ]
+   }
+  ]
+ }
+}

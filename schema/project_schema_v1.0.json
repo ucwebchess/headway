@@ -1,0 +1,1987 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/railway-headway-sim/schema/project_schema_v1.0.json",
+  "$comment": "Railway Track Headway Simulator project document schema 1.0 (application version 0.2.0). Phase 2 keeps schema 1.0: the typed physical catalogues are additive nested keys inside an infrastructure layer object, so every Phase-1 document remains valid and round-trips unchanged.",
+  "title": "Railway headway simulator project document",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "schema_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Schema Version"
+    },
+    "project": {
+      "$ref": "#/$defs/ProjectMeta"
+    },
+    "display_units": {
+      "$ref": "#/$defs/DisplayUnits"
+    },
+    "reference_system": {
+      "$ref": "#/$defs/ReferenceSystem"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ProvenanceContainer"
+    },
+    "infrastructure": {
+      "type": "array",
+      "description": "Array of infrastructure layer objects (Phase-1 container contract). Layers may carry the typed Phase-2 catalogues described by TypedInfrastructureLayer.",
+      "items": {
+        "$ref": "#/$defs/TypedInfrastructureLayer"
+      },
+      "default": []
+    },
+    "signalling": {
+      "$ref": "#/$defs/SignallingContainer"
+    },
+    "rolling_stock": {
+      "$ref": "#/$defs/RollingStockContainer"
+    },
+    "train_paths": {
+      "$ref": "#/$defs/TrainPathsContainer"
+    },
+    "services": {
+      "items": {},
+      "title": "Services",
+      "type": "array"
+    },
+    "simulation": {
+      "$ref": "#/$defs/SimulationContainer"
+    },
+    "analysis": {
+      "$ref": "#/$defs/AnalysisContainer"
+    },
+    "scenarios": {
+      "items": {},
+      "title": "Scenarios",
+      "type": "array"
+    },
+    "reporting": {
+      "$ref": "#/$defs/ReportingContainer"
+    }
+  },
+  "unevaluatedProperties": true,
+  "additionalProperties": true,
+  "x-schema-version": "1.0",
+  "x-supported-schema-versions": [
+    "1.0"
+  ],
+  "x-application-version": "0.2.0",
+  "x-phase2-typed-catalogues": [
+    "alignments",
+    "track_groups",
+    "horizontal_geometry",
+    "vertical_profiles",
+    "speed_restrictions",
+    "nodes",
+    "tracks",
+    "stations",
+    "platforms",
+    "stopping_marks",
+    "observation_points"
+  ],
+  "x-phase1-opaque-catalogues": [
+    "chainages",
+    "speed_profiles",
+    "gradients",
+    "curves",
+    "tunnels",
+    "bridges"
+  ],
+  "$defs": {
+    "AnalysisContainer": {
+      "additionalProperties": true,
+      "description": "``analysis`` section: analysis configuration placeholders.",
+      "properties": {
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "parameters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parameters"
+        }
+      },
+      "title": "AnalysisContainer",
+      "type": "object"
+    },
+    "ChainageDirection": {
+      "description": "Direction in which chainage increases along an infrastructure container.",
+      "enum": [
+        "INCREASING_CHAINAGE",
+        "DECREASING_CHAINAGE"
+      ],
+      "title": "ChainageDirection",
+      "type": "string"
+    },
+    "CurveRadiusConvention": {
+      "description": "Convention for the sign/meaning of stored curve radii.",
+      "enum": [
+        "SIGNED_LEFT_POSITIVE",
+        "ABSOLUTE_WITH_DIRECTION"
+      ],
+      "title": "CurveRadiusConvention",
+      "type": "string"
+    },
+    "DataStatus": {
+      "description": "Lifecycle/quality status of the data inside a project container.\n\n``SYNTHETIC`` (added in Phase 2) marks reference/synthetic data that is\ndeliberately *not* a real engineering record, e.g. the GRR-01 reference\nproject. The value is additive: existing documents are unaffected.",
+      "enum": [
+        "TEMPLATE",
+        "DRAFT",
+        "ENGINEERING",
+        "SYNTHETIC"
+      ],
+      "title": "DataStatus",
+      "type": "string"
+    },
+    "DisplayUnits": {
+      "additionalProperties": true,
+      "description": "``display_units`` section: UI/report preferences only.\n\nThese strings never define internal physics units and no conversion is\nperformed in Phase 1.",
+      "properties": {
+        "chainage": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chainage"
+        },
+        "track_distance": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Track Distance"
+        },
+        "elevation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Elevation"
+        },
+        "speed": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Speed"
+        },
+        "mass": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mass"
+        },
+        "force": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Force"
+        },
+        "power": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Power"
+        },
+        "time": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time"
+        },
+        "acceleration": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Acceleration"
+        },
+        "gradient": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gradient"
+        },
+        "curve_radius": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Curve Radius"
+        }
+      },
+      "title": "DisplayUnits",
+      "type": "object"
+    },
+    "EngineeringStatus": {
+      "description": "Engineering readiness of the project (not a simulation result).\n\n``REFERENCE_ASSUMPTIONS`` (added in Phase 2) marks a reference project whose\nphysical data follows documented reference assumptions rather than a\nvalidated design. The value is additive: existing documents are unaffected.",
+      "enum": [
+        "PLANNING",
+        "VALIDATED",
+        "APPROVED",
+        "REFERENCE_ASSUMPTIONS"
+      ],
+      "title": "EngineeringStatus",
+      "type": "string"
+    },
+    "ProjectMeta": {
+      "additionalProperties": true,
+      "description": "``project`` section: identity and lifecycle metadata.",
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Id"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "project_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Project Type"
+        },
+        "data_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "engineering_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EngineeringStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "created_utc": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created Utc"
+        },
+        "modified_utc": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Modified Utc"
+        }
+      },
+      "title": "ProjectMeta",
+      "type": "object"
+    },
+    "ProjectionType": {
+      "description": "Supported coordinate reference systems (data description only).",
+      "enum": [
+        "X_Y",
+        "LOCAL_METRIC",
+        "GAUSS_KRUGER",
+        "UTM",
+        "WGS84"
+      ],
+      "title": "ProjectionType",
+      "type": "string"
+    },
+    "ProvenanceContainer": {
+      "additionalProperties": true,
+      "description": "``provenance`` section: where the project data came from.",
+      "properties": {
+        "created_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created By"
+        },
+        "tool_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Name"
+        },
+        "tool_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Version"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "ProvenanceContainer",
+      "type": "object"
+    },
+    "ReferenceSystem": {
+      "additionalProperties": true,
+      "description": "``reference_system`` section: chainage/alignment reference of the project.",
+      "properties": {
+        "alignment_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Alignment Id"
+        },
+        "chainage_start_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chainage Start Km"
+        },
+        "chainage_end_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chainage End Km"
+        },
+        "chainage_origin_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chainage Origin Name"
+        },
+        "chainage_end_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chainage End Name"
+        },
+        "projection": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ProjectionType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "coordinate_system": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Coordinate System"
+        },
+        "datum": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Datum"
+        },
+        "forward_direction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ChainageDirection"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reverse_direction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ChainageDirection"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "curve_radius_convention": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CurveRadiusConvention"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "ReferenceSystem",
+      "type": "object"
+    },
+    "ReportingContainer": {
+      "additionalProperties": true,
+      "description": "``reporting`` section: report metadata only (no report is generated).",
+      "properties": {
+        "report_title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report Title"
+        },
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Author"
+        },
+        "organisation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Organisation"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "ReportingContainer",
+      "type": "object"
+    },
+    "RollingStockContainer": {
+      "additionalProperties": true,
+      "description": "``rolling_stock`` section (stored and counted; no physics implemented).",
+      "properties": {
+        "trainset_defaults": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Trainset Defaults"
+        },
+        "vehicles": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vehicles"
+        }
+      },
+      "title": "RollingStockContainer",
+      "type": "object"
+    },
+    "RuleSetTemplate": {
+      "description": "Placeholder signalling rule-set/standard marker (no logic in Phase 1).",
+      "enum": [
+        "ETCS"
+      ],
+      "title": "RuleSetTemplate",
+      "type": "string"
+    },
+    "SignallingContainer": {
+      "additionalProperties": true,
+      "description": "``signalling`` section (stored and counted; no rules are implemented).",
+      "properties": {
+        "simulation_time_step_s": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Simulation Time Step S"
+        },
+        "rule_set_template": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RuleSetTemplate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "signals": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signals"
+        }
+      },
+      "title": "SignallingContainer",
+      "type": "object"
+    },
+    "SimulationContainer": {
+      "additionalProperties": true,
+      "description": "``simulation`` section: run configuration placeholders (no run yet).",
+      "properties": {
+        "time_step_s": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time Step S"
+        },
+        "random_seed": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Random Seed"
+        },
+        "start_time_s": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Time S"
+        },
+        "horizon_s": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Horizon S"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "SimulationContainer",
+      "type": "object"
+    },
+    "TrainPathsContainer": {
+      "additionalProperties": true,
+      "description": "``train_paths`` section: stop patterns and train paths.",
+      "properties": {
+        "stop_patterns": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stop Patterns"
+        },
+        "paths": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Paths"
+        }
+      },
+      "title": "TrainPathsContainer",
+      "type": "object"
+    },
+    "Alignment": {
+      "additionalProperties": true,
+      "description": "Horizontal alignment reference object.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "start_chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Start Chainage Km"
+        },
+        "end_chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "End Chainage Km"
+        }
+      },
+      "required": [
+        "id",
+        "start_chainage_km",
+        "end_chainage_km"
+      ],
+      "title": "Alignment",
+      "type": "object"
+    },
+    "Direction": {
+      "description": "Stable machine values for the headway/analysis direction.\n\n``track`` holds transport-oriented projects that have no single\norigin->destination direction; Phase 1 accepts and preserves it but does\nnot offer it as a headway direction choice in the UI.",
+      "enum": [
+        "FORWARD",
+        "REVERSE",
+        "BOTH",
+        "TRACK"
+      ],
+      "title": "Direction",
+      "type": "string"
+    },
+    "Directionality": {
+      "description": "Physical directionality of a track group, track or platform.",
+      "enum": [
+        "FORWARD_ONLY",
+        "REVERSE_ONLY",
+        "BOTH"
+      ],
+      "title": "Directionality",
+      "type": "string"
+    },
+    "TrackGroup": {
+      "additionalProperties": true,
+      "description": "Group of tracks sharing operational characteristics.\n\n``normal_direction`` is an operational/display preference only; it never\nredefines physical directionality (which is ``directionality``).",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "directionality": {
+          "$ref": "#/$defs/Directionality"
+        },
+        "normal_direction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Direction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "directionality"
+      ],
+      "title": "TrackGroup",
+      "type": "object"
+    },
+    "GeometrySectionType": {
+      "description": "Horizontal geometry section type.",
+      "enum": [
+        "STRAIGHT",
+        "CURVE"
+      ],
+      "title": "GeometrySectionType",
+      "type": "string"
+    },
+    "Handedness": {
+      "description": "Curve handedness (direction of curvature), intrinsic to the alignment.",
+      "enum": [
+        "LEFT",
+        "RIGHT"
+      ],
+      "title": "Handedness",
+      "type": "string"
+    },
+    "HorizontalGeometrySection": {
+      "additionalProperties": true,
+      "description": "Horizontal geometry section (STRAIGHT or CURVE) on an alignment.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "alignment_id": {
+          "title": "Alignment Id",
+          "type": "string"
+        },
+        "start_chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Start Chainage Km"
+        },
+        "end_chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "End Chainage Km"
+        },
+        "type": {
+          "$ref": "#/$defs/GeometrySectionType"
+        },
+        "radius_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Radius M"
+        },
+        "handedness": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Handedness"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "alignment_id",
+        "start_chainage_km",
+        "end_chainage_km",
+        "type"
+      ],
+      "title": "HorizontalGeometrySection",
+      "type": "object"
+    },
+    "VerticalProfilePoint": {
+      "additionalProperties": true,
+      "description": "Single elevation point of a vertical profile.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Chainage Km"
+        },
+        "elevation_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Elevation M"
+        }
+      },
+      "required": [
+        "id",
+        "chainage_km",
+        "elevation_m"
+      ],
+      "title": "VerticalProfilePoint",
+      "type": "object"
+    },
+    "VerticalProfileSourceMode": {
+      "description": "How a vertical profile is defined.",
+      "enum": [
+        "ELEVATION_POINTS"
+      ],
+      "title": "VerticalProfileSourceMode",
+      "type": "string"
+    },
+    "VerticalProfile": {
+      "additionalProperties": true,
+      "description": "Vertical profile of an alignment, defined by elevation points.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "alignment_id": {
+          "title": "Alignment Id",
+          "type": "string"
+        },
+        "source_mode": {
+          "$ref": "#/$defs/VerticalProfileSourceMode",
+          "default": "ELEVATION_POINTS"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/VerticalProfilePoint"
+          },
+          "title": "Points",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "alignment_id"
+      ],
+      "title": "VerticalProfile",
+      "type": "object"
+    },
+    "SpeedRestrictionType": {
+      "description": "Baseline speed-restriction types (no temporary-speed logic in Phase 2).",
+      "enum": [
+        "PERMANENT",
+        "PERMANENT_DIRECTIONAL",
+        "TEMPORARY"
+      ],
+      "title": "SpeedRestrictionType",
+      "type": "string"
+    },
+    "SpeedRestriction": {
+      "additionalProperties": true,
+      "description": "Speed restriction over a chainage range.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "alignment_id": {
+          "title": "Alignment Id",
+          "type": "string"
+        },
+        "start_chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Start Chainage Km"
+        },
+        "end_chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "End Chainage Km"
+        },
+        "speed_kmh": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Speed Kmh"
+        },
+        "direction": {
+          "$ref": "#/$defs/Direction"
+        },
+        "type": {
+          "$ref": "#/$defs/SpeedRestrictionType"
+        }
+      },
+      "required": [
+        "id",
+        "alignment_id",
+        "start_chainage_km",
+        "end_chainage_km",
+        "speed_kmh",
+        "direction",
+        "type"
+      ],
+      "title": "SpeedRestriction",
+      "type": "object"
+    },
+    "NodeType": {
+      "description": "Topology node type.",
+      "enum": [
+        "BUFFER_STOP",
+        "SWITCH",
+        "CONNECTION",
+        "TRACK_CONNECTION",
+        "STATION_BOUNDARY"
+      ],
+      "title": "NodeType",
+      "type": "string"
+    },
+    "TopologyNode": {
+      "additionalProperties": true,
+      "description": "Topology node: the only thing that establishes graph connectivity.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/NodeType"
+        },
+        "chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Chainage Km"
+        },
+        "station_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Station Id"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "chainage_km"
+      ],
+      "title": "TopologyNode",
+      "type": "object"
+    },
+    "ChainageMap": {
+      "additionalProperties": true,
+      "description": "Track-local position to physical chainage mapping (Phase 2: LINEAR only).\n\n``position_m`` 0 maps to ``start_km``; ``position_m == track.length_m`` maps\nto ``end_km``. Straight-line interpolation between the two.",
+      "properties": {
+        "mode": {
+          "$ref": "#/$defs/ChainageMapMode",
+          "default": "LINEAR"
+        },
+        "start_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Start Km"
+        },
+        "end_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "End Km"
+        }
+      },
+      "required": [
+        "start_km",
+        "end_km"
+      ],
+      "title": "ChainageMap",
+      "type": "object"
+    },
+    "ChainageMapMode": {
+      "description": "Track-local position -> chainage mapping mode.",
+      "enum": [
+        "LINEAR"
+      ],
+      "title": "ChainageMapMode",
+      "type": "string"
+    },
+    "ElevationSource": {
+      "description": "How a track's elevation is obtained.",
+      "enum": [
+        "ALIGNMENT_MAPPING"
+      ],
+      "title": "ElevationSource",
+      "type": "string"
+    },
+    "GeometrySource": {
+      "description": "How a track's horizontal geometry is obtained.",
+      "enum": [
+        "ALIGNMENT",
+        "LOCAL_STRAIGHT",
+        "LOCAL_SYNTHETIC"
+      ],
+      "title": "GeometrySource",
+      "type": "string"
+    },
+    "Track": {
+      "additionalProperties": true,
+      "description": "Directed physical track edge between two topology nodes.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "from_node": {
+          "title": "From Node",
+          "type": "string"
+        },
+        "to_node": {
+          "title": "To Node",
+          "type": "string"
+        },
+        "length_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Length M"
+        },
+        "directionality": {
+          "$ref": "#/$defs/Directionality"
+        },
+        "track_group_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Track Group Id"
+        },
+        "geometry_source": {
+          "$ref": "#/$defs/GeometrySource",
+          "default": "ALIGNMENT"
+        },
+        "elevation_source": {
+          "$ref": "#/$defs/ElevationSource",
+          "default": "ALIGNMENT_MAPPING"
+        },
+        "chainage_map": {
+          "$ref": "#/$defs/ChainageMap"
+        }
+      },
+      "required": [
+        "id",
+        "from_node",
+        "to_node",
+        "length_m",
+        "directionality",
+        "chainage_map"
+      ],
+      "title": "Track",
+      "type": "object"
+    },
+    "StationType": {
+      "description": "Station type.",
+      "enum": [
+        "TERMINAL",
+        "INTERMEDIATE"
+      ],
+      "title": "StationType",
+      "type": "string"
+    },
+    "Station": {
+      "additionalProperties": true,
+      "description": "Passenger station (typed in place inside the infrastructure layer).",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "type": {
+          "$ref": "#/$defs/StationType"
+        },
+        "reference_chainage_km": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Reference Chainage Km"
+        },
+        "platform_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Platform Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "reference_chainage_km"
+      ],
+      "title": "Station",
+      "type": "object"
+    },
+    "Platform": {
+      "additionalProperties": true,
+      "description": "Platform usable range along a physical track.\n\n``resource_id`` is preserved as a future reference (signalling/platform\noccupation resources are not implemented in Phase 2 and are deliberately\nNOT resolved).",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "station_id": {
+          "title": "Station Id",
+          "type": "string"
+        },
+        "track_id": {
+          "title": "Track Id",
+          "type": "string"
+        },
+        "usable_start_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Usable Start M"
+        },
+        "usable_end_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Usable End M"
+        },
+        "usable_length_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Usable Length M"
+        },
+        "directionality": {
+          "$ref": "#/$defs/Directionality"
+        },
+        "platform_track_speed_kmh": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Platform Track Speed Kmh"
+        },
+        "resource_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resource Id"
+        },
+        "stopping_mark_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Stopping Mark Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "station_id",
+        "track_id",
+        "usable_start_m",
+        "usable_end_m",
+        "usable_length_m",
+        "directionality"
+      ],
+      "title": "Platform",
+      "type": "object"
+    },
+    "StoppingMarkerType": {
+      "description": "Stopping marker type.",
+      "enum": [
+        "EXPLICIT"
+      ],
+      "title": "StoppingMarkerType",
+      "type": "string"
+    },
+    "StoppingMark": {
+      "additionalProperties": true,
+      "description": "Explicit stopping position on a platform track.\n\nThe authoritative location is ``track_id`` + ``position_m``. A mapped\nchainage is derived from the track map and is never authoritative input.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "platform_id": {
+          "title": "Platform Id",
+          "type": "string"
+        },
+        "track_id": {
+          "title": "Track Id",
+          "type": "string"
+        },
+        "direction": {
+          "$ref": "#/$defs/Direction"
+        },
+        "position_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Position M"
+        },
+        "marker_type": {
+          "$ref": "#/$defs/StoppingMarkerType",
+          "default": "EXPLICIT"
+        }
+      },
+      "required": [
+        "id",
+        "platform_id",
+        "track_id",
+        "direction",
+        "position_m"
+      ],
+      "title": "StoppingMark",
+      "type": "object"
+    },
+    "ObservationMember": {
+      "additionalProperties": true,
+      "description": "Track cross-section member: a point on a track.",
+      "properties": {
+        "track_id": {
+          "title": "Track Id",
+          "type": "string"
+        },
+        "position_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Position M"
+        }
+      },
+      "required": [
+        "track_id",
+        "position_m"
+      ],
+      "title": "ObservationMember",
+      "type": "object"
+    },
+    "ObservationPointType": {
+      "description": "Observation point type.",
+      "enum": [
+        "SERVICE_EVENT",
+        "CROSS_SECTION",
+        "TRACK_CROSS_SECTION"
+      ],
+      "title": "ObservationPointType",
+      "type": "string"
+    },
+    "ServiceEventType": {
+      "description": "Service event recorded by a SERVICE_EVENT observation point.",
+      "enum": [
+        "ARRIVAL",
+        "DEPARTURE"
+      ],
+      "title": "ServiceEventType",
+      "type": "string"
+    },
+    "ObservationPoint": {
+      "additionalProperties": true,
+      "description": "Observation point (service event, node cross-section or track cross-section).",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "type": {
+          "$ref": "#/$defs/ObservationPointType"
+        },
+        "station_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Station Id"
+        },
+        "event": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ServiceEventType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "platform_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Platform Id"
+        },
+        "track_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Track Id"
+        },
+        "position_m": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Position M"
+        },
+        "node_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Node Ids",
+          "type": "array"
+        },
+        "members": {
+          "items": {
+            "$ref": "#/$defs/ObservationMember"
+          },
+          "title": "Members",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "title": "ObservationPoint",
+      "type": "object"
+    },
+    "TypedInfrastructureLayer": {
+      "type": "object",
+      "description": "One infrastructure layer. In a physical project the typed catalogues are validated semantically and every registered engineering object id must be globally unique.",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Layer identifier (unique per project)."
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "physical_mode": {
+          "type": "string",
+          "enum": [
+            "PHYSICAL",
+            "LEGACY"
+          ],
+          "description": "Declares whether the layer is validated as typed physical infrastructure."
+        },
+        "chainages": {
+          "type": "array",
+          "description": "Phase-1 opaque catalogue 'chainages': preserved verbatim and never interpreted. Records carrying an 'id' are an error inside a physical project (VAL-PHASE-002).",
+          "items": {
+            "type": "object"
+          },
+          "default": []
+        },
+        "speed_profiles": {
+          "type": "array",
+          "description": "Phase-1 opaque catalogue 'speed_profiles': preserved verbatim and never interpreted. Records carrying an 'id' are an error inside a physical project (VAL-PHASE-002).",
+          "items": {
+            "type": "object"
+          },
+          "default": []
+        },
+        "gradients": {
+          "type": "array",
+          "description": "Phase-1 opaque catalogue 'gradients': preserved verbatim and never interpreted. Records carrying an 'id' are an error inside a physical project (VAL-PHASE-002).",
+          "items": {
+            "type": "object"
+          },
+          "default": []
+        },
+        "curves": {
+          "type": "array",
+          "description": "Phase-1 opaque catalogue 'curves': preserved verbatim and never interpreted. Records carrying an 'id' are an error inside a physical project (VAL-PHASE-002).",
+          "items": {
+            "type": "object"
+          },
+          "default": []
+        },
+        "tunnels": {
+          "type": "array",
+          "description": "Phase-1 opaque catalogue 'tunnels': preserved verbatim and never interpreted. Records carrying an 'id' are an error inside a physical project (VAL-PHASE-002).",
+          "items": {
+            "type": "object"
+          },
+          "default": []
+        },
+        "bridges": {
+          "type": "array",
+          "description": "Phase-1 opaque catalogue 'bridges': preserved verbatim and never interpreted. Records carrying an 'id' are an error inside a physical project (VAL-PHASE-002).",
+          "items": {
+            "type": "object"
+          },
+          "default": []
+        },
+        "alignments": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'alignments' (Alignments); registry object type 'alignment'.",
+          "items": {
+            "$ref": "#/$defs/Alignment"
+          },
+          "default": []
+        },
+        "track_groups": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'track_groups' (Track groups); registry object type 'track_group'.",
+          "items": {
+            "$ref": "#/$defs/TrackGroup"
+          },
+          "default": []
+        },
+        "horizontal_geometry": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'horizontal_geometry' (Horizontal geometry sections); registry object type 'horizontal_geometry_section'.",
+          "items": {
+            "$ref": "#/$defs/HorizontalGeometrySection"
+          },
+          "default": []
+        },
+        "vertical_profiles": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'vertical_profiles' (Vertical profiles); registry object type 'vertical_profile'.",
+          "items": {
+            "$ref": "#/$defs/VerticalProfile"
+          },
+          "default": []
+        },
+        "speed_restrictions": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'speed_restrictions' (Speed restrictions); registry object type 'speed_restriction'.",
+          "items": {
+            "$ref": "#/$defs/SpeedRestriction"
+          },
+          "default": []
+        },
+        "nodes": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'nodes' (Topology nodes); registry object type 'node'.",
+          "items": {
+            "$ref": "#/$defs/TopologyNode"
+          },
+          "default": []
+        },
+        "tracks": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'tracks' (Track edges); registry object type 'track'.",
+          "items": {
+            "$ref": "#/$defs/Track"
+          },
+          "default": []
+        },
+        "stations": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'stations' (Stations); registry object type 'station'.",
+          "items": {
+            "$ref": "#/$defs/Station"
+          },
+          "default": []
+        },
+        "platforms": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'platforms' (Platforms); registry object type 'platform'.",
+          "items": {
+            "$ref": "#/$defs/Platform"
+          },
+          "default": []
+        },
+        "stopping_marks": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'stopping_marks' (Stopping marks); registry object type 'stopping_mark'.",
+          "items": {
+            "$ref": "#/$defs/StoppingMark"
+          },
+          "default": []
+        },
+        "observation_points": {
+          "type": "array",
+          "description": "Typed Phase-2 catalogue 'observation_points' (Observation points); registry object type 'observation_point'.",
+          "items": {
+            "$ref": "#/$defs/ObservationPoint"
+          },
+          "default": []
+        }
+      },
+      "unevaluatedProperties": true
+    }
+  }
+}

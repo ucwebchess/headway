@@ -1,0 +1,175 @@
+{
+  "description": "SHA-256 inventory of the ACCEPTED Phase-1 source tree as delivered (before any Phase-2 edit). Phase 2 extends this tree in place; the superseded/adapted tests are listed in PHASE1_REGRESSION_MAP.md.",
+  "phase": "Phase 1 - Application Foundation",
+  "app_version": "0.1.0",
+  "schema_version": "1.0",
+  "test_summary": "66 passed - PASS - all tests passed (18/18 acceptance)",
+  "file_count": 33,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3215,
+      "sha256": "2deb6bc7480e8b9fe1a65a715d768d19d7790aa5a25b2834510eee350aef36ff"
+    },
+    {
+      "path": "example_project.json",
+      "bytes": 8866,
+      "sha256": "a36492095e3447f2b2fbd8023575f9b83d74786e9fac424c06c443ee28990b68"
+    },
+    {
+      "path": "railway_headway_sim/__init__.py",
+      "bytes": 3986,
+      "sha256": "1dc7a48425b0c3f6c19c3884c854fc89e1e69d3803da6dda4dadd53566326faa"
+    },
+    {
+      "path": "railway_headway_sim/app/__init__.py",
+      "bytes": 308,
+      "sha256": "8e776b6c3a8deb18fc726ba2a27a1c01581469f736b4941207986dbdd755cd51"
+    },
+    {
+      "path": "railway_headway_sim/app/project_controller.py",
+      "bytes": 32993,
+      "sha256": "94467667f0688520df18b066d7ddf4688ac06a4c5615709079e6a63109db3dac"
+    },
+    {
+      "path": "railway_headway_sim/constants.py",
+      "bytes": 6335,
+      "sha256": "9450367206f16e9d98c8ec9a2e789cad0dbba372f4ea9c863872471ece6df8c5"
+    },
+    {
+      "path": "railway_headway_sim/example_project.py",
+      "bytes": 8591,
+      "sha256": "266c3fcfd9a0bb75ab9d40afe536afa855113f9a769977db641fd179901f18e7"
+    },
+    {
+      "path": "railway_headway_sim/io/__init__.py",
+      "bytes": 1141,
+      "sha256": "020e1ca3d12657cf86950f18471b73af7198b3a312102fbe93f0ebfd4236f99f"
+    },
+    {
+      "path": "railway_headway_sim/io/project_io.py",
+      "bytes": 18687,
+      "sha256": "45b061d28040340eee53fa251406afa52f9b186298b396d87b5be9cc86d17def"
+    },
+    {
+      "path": "railway_headway_sim/models/__init__.py",
+      "bytes": 1589,
+      "sha256": "03e68cf86619bf961a74294d21deba0f4d202aa5421c2b541bb2964b257f8e89"
+    },
+    {
+      "path": "railway_headway_sim/models/common.py",
+      "bytes": 2094,
+      "sha256": "17d8328dd95b99520ec5e64ea24de4b18b8fdefde4c44b0fc7ecba5103b11903"
+    },
+    {
+      "path": "railway_headway_sim/models/diagnostics.py",
+      "bytes": 5006,
+      "sha256": "1a2ae97dec0669fe65712f7db36a1832173f4f34014b45f16df873ec4411b0cb"
+    },
+    {
+      "path": "railway_headway_sim/models/enums.py",
+      "bytes": 2949,
+      "sha256": "f14ff5444fd83789e6d1432548d94584c9baae9aa7f1a8f02f9b77237f142a39"
+    },
+    {
+      "path": "railway_headway_sim/models/project.py",
+      "bytes": 17152,
+      "sha256": "f883cbddfd786ca965f834752e25f951d72767761991f16e7666a6017ffe8fbe"
+    },
+    {
+      "path": "railway_headway_sim/tests/__init__.py",
+      "bytes": 73,
+      "sha256": "46168ac7b4fd3aacfb7e89430ccc9d0d25053925ad06a2c35817f1c597c19f0f"
+    },
+    {
+      "path": "railway_headway_sim/tests/conftest.py",
+      "bytes": 2728,
+      "sha256": "5854aafa8126b9b317dc25015791e9f61b24250fd9e67bfedc48b4d5c1385007"
+    },
+    {
+      "path": "railway_headway_sim/tests/run_tests.py",
+      "bytes": 1680,
+      "sha256": "bf39e3e9e78accf4b3e7c9f0ac3274d3bb8f319114ef0616223433ffa817d304"
+    },
+    {
+      "path": "railway_headway_sim/tests/support.py",
+      "bytes": 1780,
+      "sha256": "0125f2e49bbc2d242debe377766a3746cd5efc1169ab1e24e7c54f440df83e4f"
+    },
+    {
+      "path": "railway_headway_sim/tests/test_controller.py",
+      "bytes": 11534,
+      "sha256": "f4cd8c1a520335902858c1daa7777fb3bed2cafb47d3096874072b1342402d99"
+    },
+    {
+      "path": "railway_headway_sim/tests/test_project_io.py",
+      "bytes": 12654,
+      "sha256": "9bf978da8c029535065d69839b1de3e0225ef9d616edd1d6a18cb92505d6f4c6"
+    },
+    {
+      "path": "railway_headway_sim/tests/test_ui_shell.py",
+      "bytes": 8209,
+      "sha256": "b8f046da2378cba7907a4c3a1bcd4ffa97476299ba7636b42dcec2a7b137a67f"
+    },
+    {
+      "path": "railway_headway_sim/tests/test_validation.py",
+      "bytes": 16547,
+      "sha256": "eba1c2db6f18c9037e61448fc9df0a3d850b965c7106b3117e8cd884388fa8b7"
+    },
+    {
+      "path": "railway_headway_sim/ui/__init__.py",
+      "bytes": 2759,
+      "sha256": "ae089122c0cd7a4bed8ce350057c89326c4e855b6c604e6169f6a48f880cfc88"
+    },
+    {
+      "path": "railway_headway_sim/ui/app_shell.py",
+      "bytes": 9532,
+      "sha256": "634414313ba260d0d7b77f43b08cb6d96510df0760c7b5b463c21913322fc6ba"
+    },
+    {
+      "path": "railway_headway_sim/ui/formatting.py",
+      "bytes": 15268,
+      "sha256": "5489fdd046b29448f80986cfa5380b95af146b88da42578805ed95834379f953"
+    },
+    {
+      "path": "railway_headway_sim/ui/placeholder_pages.py",
+      "bytes": 2915,
+      "sha256": "17efd278210c4a6ca3fb62f67b9437ac1e407930fff1bba9c5eabe16cb8648ad"
+    },
+    {
+      "path": "railway_headway_sim/ui/project_page.py",
+      "bytes": 12642,
+      "sha256": "c95eda64f97dad14f830c947adafa61665fd5d2c82bcd6cd0d333861505db69f"
+    },
+    {
+      "path": "railway_headway_sim/ui/validation_page.py",
+      "bytes": 9373,
+      "sha256": "2dda8413e15d08dbaf7cde19795f018a43215631e070b4d94ae55b09011a411b"
+    },
+    {
+      "path": "railway_headway_sim/validation/__init__.py",
+      "bytes": 7640,
+      "sha256": "ab4869a8fed27242eb26c2182c8af50eb14eb857490a47dfde983a5994f0897b"
+    },
+    {
+      "path": "railway_headway_sim/validation/codes.py",
+      "bytes": 4709,
+      "sha256": "68979c6668d91d1b9f7ea7313d3d5bc8b1c1830477828030986c1ac384f25e7c"
+    },
+    {
+      "path": "railway_headway_sim/validation/project_validation.py",
+      "bytes": 26090,
+      "sha256": "9e126742c4ea5055859ecfc8c548c2109ca65b628d975b4095f2c77895ad62e3"
+    },
+    {
+      "path": "railway_headway_sim/validation/schema_validation.py",
+      "bytes": 13542,
+      "sha256": "5b51d49bf363827fbc4125c74e1808c313b51d4af17746c01746b3d26c612d57"
+    },
+    {
+      "path": "railway_headway_sim/version.py",
+      "bytes": 1691,
+      "sha256": "753b79bb9afa9e57a97429c154a3396121a4415563a431cbee2ee1b2ccd3f40e"
+    }
+  ]
+}

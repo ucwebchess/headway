@@ -1,0 +1,110 @@
+{
+ "schema_version": "1.0",
+ "document_kind": "ROLLING_STOCK_CATALOGUE",
+ "project_id": "GRR-01",
+ "project_name": "GRR-01 Reference Project (Part A - physical infrastructure)",
+ "project_file": "examples/GRR-01.json",
+ "project_file_sha256": "ad0a26265d4e072aeedcc69161bef90f200c20b4efb12a4d56a5276c4a4f7a56",
+ "project_canonical_hash": "5189aaa2340c17022666ef44772c7d34f99b2fea9ee9609bb7b7513238ef4dbe",
+ "notes": [
+  "Rolling stock of the GRR-01 reference railway, kept in a companion file.",
+  "examples/GRR-01.json stays frozen and declares no rolling stock of its own (rolling_stock.vehicles == []); this file is data of its own document_kind and changes no key, value, count or rule of the frozen project.",
+  "RS-HSR320 carries the high-speed reference assumptions (data_status REFERENCE_ASSUMPTION); RS-REG200 is the synthetic regional reference (data_status SYNTHETIC_REFERENCE). Neither is manufacturer data.",
+  "Neither stock type declares a tractive-effort characteristic: the simplified FORCE_THEN_POWER_LIMITED description (rated power and maximum effort) is the delivered one. The optional traction_curve is modelled and validated for a later stage.",
+  "The running-resistance description stores the model name, the three coefficients, the coefficient speed unit and the output force unit. Stage 6A stores these values and computes no force; the curve-resistance term is declared to come from the project's stored geometry (model_source PROJECT_DYNAMICS) and is not stored per stock type.",
+  "The braking and ETCS supervision entries are stored reference decelerations used to describe the stock type; no braking curve, supervision curve or motion of any kind is computed from them in this stage.",
+  "Physical validity of every value below is checked by railway_headway_sim.validation.rolling_stock_validation; an invalid definition is reported and refused, never repaired."
+ ],
+ "rolling_stock": [
+  {
+   "id": "RS-HSR320",
+   "name": "Intercity high-speed trainset (reference assumption)",
+   "category": "HIGH_SPEED_PASSENGER",
+   "data_status": "REFERENCE_ASSUMPTION",
+   "manufacturer_data": false,
+   "geometry": {
+    "length_m": 202.0
+   },
+   "mass": {
+    "static_mass_t": 485.0,
+    "rotating_mass_factor": 1.04
+   },
+   "performance_limits": {
+    "max_speed_kmh": 320.0,
+    "max_operational_acceleration_mps2": 0.65
+   },
+   "traction": {
+    "model": "FORCE_THEN_POWER_LIMITED",
+    "rated_power_kw": 9800.0,
+    "max_tractive_effort_kn": 300.0
+   },
+   "running_resistance": {
+    "model": "DAVIS",
+    "formula": "A_PLUS_BV_PLUS_CV2",
+    "coefficients": {
+     "A": 2.506,
+     "B": 0.04065,
+     "C": 0.00043
+    },
+    "coefficient_speed_unit": "km/h",
+    "output_force_unit": "kN"
+   },
+   "curve_resistance": {
+    "model_source": "PROJECT_DYNAMICS"
+   },
+   "service_braking": {
+    "model": "CONSTANT_EQUIVALENT_BRAKE_FORCE",
+    "reference_deceleration_mps2": 0.63
+   },
+   "etcs_supervision": {
+    "reference_deceleration_mps2": 0.5,
+    "model_role": "MOVEMENT_AUTHORITY_LOOKAHEAD"
+   }
+  },
+  {
+   "id": "RS-REG200",
+   "name": "Regional two-car unit (synthetic reference)",
+   "category": "REGIONAL_PASSENGER",
+   "data_status": "SYNTHETIC_REFERENCE",
+   "manufacturer_data": false,
+   "geometry": {
+    "length_m": 160.0
+   },
+   "mass": {
+    "static_mass_t": 300.0,
+    "rotating_mass_factor": 1.06
+   },
+   "performance_limits": {
+    "max_speed_kmh": 200.0,
+    "max_operational_acceleration_mps2": 0.8
+   },
+   "traction": {
+    "model": "FORCE_THEN_POWER_LIMITED",
+    "rated_power_kw": 5000.0,
+    "max_tractive_effort_kn": 260.0
+   },
+   "running_resistance": {
+    "model": "DAVIS",
+    "formula": "A_PLUS_BV_PLUS_CV2",
+    "coefficients": {
+     "A": 3.0,
+     "B": 0.03,
+     "C": 0.0005
+    },
+    "coefficient_speed_unit": "km/h",
+    "output_force_unit": "kN"
+   },
+   "curve_resistance": {
+    "model_source": "PROJECT_DYNAMICS"
+   },
+   "service_braking": {
+    "model": "CONSTANT_EQUIVALENT_BRAKE_FORCE",
+    "reference_deceleration_mps2": 0.8
+   },
+   "etcs_supervision": {
+    "reference_deceleration_mps2": 0.55,
+    "model_role": "MOVEMENT_AUTHORITY_LOOKAHEAD"
+   }
+  }
+ ]
+}
